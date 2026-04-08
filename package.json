@@ -1,0 +1,28 @@
+{
+  "name": "bibliotecaapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python app.py",
+    "watch": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beatriceOnzi/Sistema_Biblioteca_Api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/beatriceOnzi/Sistema_Biblioteca_Api/issues"
+  },
+  "homepage": "https://github.com/beatriceOnzi/Sistema_Biblioteca_Api#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^3.4.19"
+  }
+}

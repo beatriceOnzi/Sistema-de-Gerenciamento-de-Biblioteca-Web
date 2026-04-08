@@ -23,7 +23,7 @@ def criar():
         "nome": aluno.nome
     })
 
-@bp.route('/api/alunos/', methods=['GET'])
+@bp.route('/alunos/', methods=['GET'])
 def get_alunos():
     alunos = Aluno.query.all()
     print(alunos)
