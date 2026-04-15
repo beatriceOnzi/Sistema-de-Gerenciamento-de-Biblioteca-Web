@@ -1,7 +1,12 @@
+@import url('https://googleapis.com');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .is_current_page {
-    background: #f00
-} 
+    border-bottom-width: 3px;
+    border-color: #ffc023;
+    color: white;
+    font-weight: bold;
+}

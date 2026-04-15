@@ -4,7 +4,7 @@ import services.aluno_service
 
 bp = Blueprint("alunos", __name__, url_prefix="/") # depois separar as rotas entre Home e Turma?
 
-pages_list = 0
+page = 0
 
 '''
 1 -> turmas 
@@ -16,8 +16,8 @@ pages_list = 0
 
 @bp.route('/')
 def index():
-    pages_list = 1
-    return render_template('home.html', pages_list = pages_list)
+    page = 1
+    return render_template('turmas.html', page = page)
 
 @bp.route("/", methods=["POST"])
 def criar():

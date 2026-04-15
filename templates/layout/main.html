@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Biblioteca{% endblock %}</title>
+    <title>{% block title %}Biblioteca CNEC{% endblock %}</title>
     <link href="https://unpkg.com/tabulator-tables@5.6.2/dist/css/tabulator.min.css" rel="stylesheet">
     <link href="../../static/css/output.css" rel="stylesheet">
 </head>
-<body class="bg-cnec-azul-claro bg-[url('/static/assets/teste.png')] bg-repeat  bg-[length:700px] bg-center bg-fixed min-h-screen">
-
+<body class="bg-cnec-branco font-poppins">
     {% include "partials/navbar.html" %}
-
     <main>
         {% block content %}
-        <p></p>
-        
         {% endblock %}
     </main>
-
+    
     <script src="https://unpkg.com/tabulator-tables@5.6.2/dist/js/tabulator.min.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
+<!-- 
+bg-[url('/static/assets/teste2.jpg')] bg-cover -->

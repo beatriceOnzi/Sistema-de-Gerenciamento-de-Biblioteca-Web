@@ -7,26 +7,17 @@ Rode o servidor executando: python app.py
 
 Abra o seu navegador e acesse: http://127.0.0.1:5000
 
-💡 Resumo do Fluxo de Comunicação (Para seus estudos)
-Ação: Você digita algo e clica em "Adicionar" no HTML.
-
-JS (Front): O main.js pega esse texto, empacota num formato chamado JSON e envia uma requisição POST para o endereço /api/tarefas do seu servidor.
-
-Flask (Back): O app.py percebe que alguém chamou a rota /api/tarefas via POST. Ele desempacota o JSON.
-
-SQLAlchemy (Banco): O Flask usa o SQLAlchemy para traduzir o texto em um comando SQL (INSERT INTO...) e salva a tarefa no arquivo database.db.
-
-Retorno: O Flask envia um "Ok" de volta para o JavaScript. O JS recebe o Ok e pede imediatamente a lista atualizada para o servidor exibir na tela.
-
-
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAA 
 
-- pegar valores do banco 
-- colocar html na rota /alunos 
-- fazer tabela funcionar
+Services:
+# services: 
+# - turma (pegar tudo? /registrar emprestimo / setupautocomplete etc)
+# - historico ( pegar tudo? / mudar situação / pesquisar)
+# - 
+# - outros: botoes-home / manual 
 
 
-'''Rotas:
+Rotas:
 - @app.route('/home', methods=['GET']) -> Turmas botões
 - @app.route('/historico', methods=['GET']) -> Tabela do historico
 - @app.route('/historico/situacao/:id', methods=['GET']) -> Alterar a situação de devolvido 
@@ -44,4 +35,3 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 TURMAS:
 - @app.route('/turma/:ano', methods=['GET']) -> Mostrar a tabela e deixar colocar novos emprestimos
 - @app.route('/turma/:ano/salvar_dados', methods=['POST']) -> salva os dados no banco 
-'''
