@@ -4,9 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'amarelo_cnec': '#ffc023',
         cnec:{
-          amarelo: '#ffd32b',
+          amarelo: {
+            DEFAULT: '#ffd32b',
+            escuro:'#d7b120',
+          },
           azul: {
             DEFAULT: '#003C9D',
             claro: '#7c89c2',

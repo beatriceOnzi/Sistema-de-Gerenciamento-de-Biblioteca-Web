@@ -3,6 +3,21 @@
 {% block title %}Biblioteca CNEC{% endblock %}
 
 {% block content %}
+    <div class="flex flex-col items-center justify-center w-full">
+        <div class="justify-start ">
+            <div class=" pb-0 pt-2 px-4 text-2xl bg-cnec-azul text-cnec-branco font-semibold w-max">
+                SELECIONE A TURMA
+            </div>
+            <div class="grid grid-flow-col grid-rows-3 gap-10 bg-cnec-azul h-max w-max p-14">
+                {% for turma in turmas %} 
+                    <a href="/turma/{{turma.turma}}" class="text-cnec-azul-escuro bg-cnec-amarelo rounded-sm p-4 px-8 border-4 border-cnec-amarelo-escuro hover:bg-cnec-amarelo-escuro transition-all duration-400 transform hover:scale-105 text-2xl font-bold ">{{ turma.turma_formatada }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<!--
     <div class="flex flex-col items-center justify-center h-full w-full bg-cnec-azul-escuro">
         <div class="justify-start">
             <div class="rounded-t-md p-2 px-4 bg-cnec-azul text-cnec-branco font-bold w-max">
@@ -15,4 +30,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
+-->

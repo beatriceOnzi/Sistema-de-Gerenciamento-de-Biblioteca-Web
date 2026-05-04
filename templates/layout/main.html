@@ -6,9 +6,9 @@
     <link href="../../static/css/output.css" rel="stylesheet">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body class=" bg-cnec-branco font-poppins">
+<body class="bg-cnec-branco font-poppins flex flex-col min-h-screen">    
     {% include "partials/navbar.html" %}
-    <main>
+    <main class="flex-1 flex">
         {% block content %}
         {% endblock %}
     </main>
@@ -17,5 +17,3 @@
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
-<!-- 
-bg-[url('/static/assets/teste2.jpg')] bg-cover -->
