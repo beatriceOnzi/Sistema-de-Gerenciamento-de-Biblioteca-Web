@@ -3,17 +3,24 @@
 {% block title %}Biblioteca CNEC{% endblock %}
 
 {% block content %}
-    <h1 class="text-3xl font-bold text-cnec-azul-escuro sm:text-cnec-amarelo">
-    Turma {{turma}}º Ano
-    </h1>
-    <div>
-        <ul>
-            {% for aluno in alunos_turma %}
-                <li class="text-cnec-azul">
-                    {{aluno.nome}} - {{aluno.turma}}º Ano
-                </li>
-            {% endfor %}
-        </ul> 
+    <div class="flex flex-col items-center justify-center w-full">
+        <div class="justify-start ">
+            <div class=" pb-0 pt-2 px-4 text-2xl bg-cnec-azul text-cnec-branco font-semibold w-max">
+                Turma - {{turma}}º Ano
+            </div>
+            
+
+            <div class="grid grid-flow-col grid-rows-3 gap-10 bg-cnec-azul h-max w-max p-14">
+                <ul>
+                    {% for aluno in alunos_turma %}
+                        <li class="text-cnec-branco">
+                            {{aluno.nome}}
+                        </li>
+                    {% endfor %}
+                </ul> 
+            </div>
+        </div>
     </div>
+
 
 {% endblock %}

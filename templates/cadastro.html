@@ -4,77 +4,120 @@
 
 {% block content %}
 
-<div class="flex items-center justify-center w-full"> <!-- div que ocupa toda a tela -->
-    <div class=""> <!-- div que vai englobar o menu + (formulario | registros ) -->
-        <div> <!-- div do menu -->
-            <a href="/cadastro/alunos">Alunos</a>
-            <a href="/cadastro/livros">Livros</a>
+<div class="flex items-center justify-center w-full px-4">
+
+    <div class="w-full max-w-5xl space-y-6">
+
+        <!-- menu -->
+        <div class="flex gap-8 text-xl font-semibold">
+            <a href="/cadastro/alunos"
+               class="pb-2 transition-all
+               {% if grupo == 'alunos' %}
+                   border-b-4 border-cnec-amarelo text-cnec-azul-escuro
+               {% else %}
+                   text-gray-400 hover:text-white
+               {% endif %}">
+                Alunos
+            </a>
+
+            <a href="/cadastro/livros"
+               class="pb-2 transition-all
+               {% if grupo == 'livros' %}
+                   border-b-4 border-cnec-amarelo text-cnec-azul-escuro
+               {% else %}
+                   text-gray-400 hover:text-white
+               {% endif %}">
+                Livros
+            </a>
         </div>
-        <div class="bg-cnec-azul-escuro"> <!-- div formulario | registros -->
-            
-            <!-- Para Alunos -->
+
+        <!-- resgistro | formulario -->
+        <div class="bg-cnec-azul-escuro p-6 flex flex-col md:flex-row gap-8">
 
             {% if grupo == "alunos" %}
-                <div> <!-- div registros -->
-                    <ul>
+
+                <!-- registros -->
+                <div class="bg-cnec-azul-claro p-4 w-full md:w-1/2 max-h-80 overflow-y-auto">
+                    <h2 class="font-bold mb-3 text-lg">Alunos cadastrados</h2>
+
+                    <ul class="space-y-2">
                         {% for aluno in alunos %}
-                            <li class="text-cnec-azul">
+                            <li class="bg-cnec-azul-escuro p-2 rounded text-cnec-branco">
                                 {{aluno.nome}} - {{aluno.turma}}º Ano
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div> <!-- div formulario -->
-                    <form action="/cadastro/{{ grupo }}/novo">
-                        <label>
-                            Nome:
-                            <input type="text">
-                        </label>
-                        <label>
-                            Turma:
-                            <select>
-                                <option value="1">1º Ano</option>
-                                <option value="2">2º Ano</option>
-                                <option value="3">3º Ano</option>
-                                <option value="4">4º Ano</option>
-                                <option value="5">5º Ano</option>
-                                <option value="6">6º Ano</option>
-                                <option value="7">7º Ano</option>
-                                <option value="8">8º Ano</option>
-                                <option value="9">9º Ano</option>
+
+                <!-- formulario -->
+                <div class="w-full md:w-1/2">
+                    <form class="flex flex-col gap-6 font-semibold">
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-cnec-branco">Nome</label>
+                            <input type="text"
+                                   class="p-2 rounded bg-cnec-branco text-cnec-branco outline-none focus:ring-2 focus:ring-cnec-amarelo">
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-cnec-branco">Turma</label>
+                            <select class="p-2 rounded bg-cnec-branco text-cnec-azul-escuro/80">
+                                {% for i in range(1,10) %}
+                                    <option value="{{i}}">{{i}}º Ano</option>
+                                {% endfor %}
                             </select>
-                        </label>
-                        <input type="submit"/>
+                        </div>
+
+                        <button type="submit"
+                                class="bg-cnec-amarelo text-cnec-azul-escuro font-bold py-2 rounded hover:opacity-90 transition">
+                            Cadastrar
+                        </button>
+
                     </form>
                 </div>
+
             {% endif %}
 
-            
-            
-            <!-- Para livros -->
 
             {% if grupo == "livros" %}
-                <div> <!-- div registros -->
-                    <ul>
+
+                <!-- resgistro -->
+                <div class="bg-cnec-azul-claro rounded-lg p-4 w-full md:w-1/2 max-h-80 overflow-y-auto">
+                    <h2 class="font-bold mb-3 text-lg">Livros cadastrados</h2>
+
+                    <ul class="space-y-2">
                         {% for livro in livros %}
-                            <li class="text-cnec-azul">
+                            <li class="bg-cnec-azul-escuro p-2 rounded text-cnec-branco">
                                 {{livro.nome}}
                             </li>
                         {% endfor %}
-                    </ul> 
+                    </ul>
                 </div>
-                <div> <!-- div formulario -->
-                    <form action="/cadastro/{{ grupo }}/novo">
-                        <label>
-                            Título:
-                            <input type="text">
-                        </label>
-                        <input type="submit"/>
+
+                <!-- formulario -->
+                <div class="w-full md:w-1/2">
+                    <form class="flex flex-col gap-6 font-semibold">
+
+                        <div class="flex flex-col gap-2">
+                            <label class="text-cnec-branco">Título</label>
+                            <input type="text"
+                                   class="p-2 rounded bg-white text-cnec-branco outline-none focus:ring-2 focus:ring-cnec-amarelo">
+                        </div>
+
+                        <button type="submit"
+                                class="bg-cnec-amarelo text-cnec-azul-escuro font-bold py-2 rounded hover:opacity-90 transition">
+                            Cadastrar
+                        </button>
+
                     </form>
                 </div>
+
             {% endif %}
+
         </div>
+
     </div>
+
 </div>
 
 {% endblock %}

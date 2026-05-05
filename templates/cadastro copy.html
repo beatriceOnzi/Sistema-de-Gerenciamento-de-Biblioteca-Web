@@ -1,0 +1,80 @@
+{% extends "layout/main.html" %}
+
+{% block title %}Biblioteca CNEC - Cadastro{% endblock %}
+
+{% block content %}
+
+<div class="flex items-center justify-center w-full"> <!-- div que ocupa toda a tela -->
+    <div class="space-y-3"> <!-- div que vai englobar o menu + (formulario | registros ) -->
+        <div class="text-2xl font-semibold space-x-5"> <!-- div do menu -->
+            <a href="/cadastro/alunos" class="{% if grupo == 'alunos' %} border-b-4 border-cnec-amarelo {% endif %}">Alunos</a>
+            <a href="/cadastro/livros" class="{% if grupo == 'livros' %} border-b-4 border-cnec-amarelo {% endif %}">Livros</a>
+        </div>
+        <div class="bg-cnec-azul-escuro h-full w-full min-h-96 p-5 text-cnec-branco items-center flex gap-10"> <!-- div formulario | registros -->
+            
+            <!-- Para Alunos -->
+
+            {% if grupo == "alunos" %}
+                <div class="bg-cnec-azul-claro px-6 py-3 h-max"> <!-- div registros -->
+                    <ul>
+                        {% for aluno in alunos %}
+                            <li class="text-cnec-branco list-disc">
+                                {{aluno.nome}} - {{aluno.turma}}º Ano
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div> <!-- div formulario -->
+                    <form class="flex flex-col gap-y-12 text-cnec-branco font-semibold text-xl" action="/cadastro/{{ grupo }}/novo">
+                        <label>
+                            Nome:
+                            <input type="text">
+                        </label>
+                        <label>
+                            Turma:
+                            <select>
+                                <option value="1">1º Ano</option>
+                                <option value="2">2º Ano</option>
+                                <option value="3">3º Ano</option>
+                                <option value="4">4º Ano</option>
+                                <option value="5">5º Ano</option>
+                                <option value="6">6º Ano</option>
+                                <option value="7">7º Ano</option>
+                                <option value="8">8º Ano</option>
+                                <option value="9">9º Ano</option>
+                            </select>
+                        </label>
+                        <input type="submit"/>
+                    </form>
+                </div>
+            {% endif %}
+
+            
+            
+            <!-- Para livros -->
+
+            {% if grupo == "livros" %}
+                <div> <!-- div registros -->
+                    <ul>
+                        {% for livro in livros %}
+                            <li class="text-cnec-branco">
+                                {{livro.nome}}
+                            </li>
+                        {% endfor %}
+                    </ul> 
+                </div>
+                <div> <!-- div formulario -->
+                    <form action="/cadastro/{{ grupo }}/novo">
+                        <label>
+                            Título:
+                            <input type="text">
+                        </label>
+                        <input type="submit"/>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
