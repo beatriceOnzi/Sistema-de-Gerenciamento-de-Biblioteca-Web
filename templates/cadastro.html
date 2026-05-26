@@ -42,8 +42,13 @@
 
                     <ul class="space-y-2">
                         {% for aluno in alunos %}
-                            <li class="bg-cnec-azul-escuro p-2 rounded text-cnec-branco">
+                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
                                 {{aluno.nome}} - {{aluno.turma}}º Ano
+                                <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post">
+                                    <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-cnec-amarelo cursor-pointer group-hover:text-cnec-azul-escuro font-bold px-2 py-1 rounded">
+                                        Excluir
+                                    </button>
+                                </form>
                             </li>
                         {% endfor %}
                     </ul>
@@ -86,17 +91,23 @@
 
             {% if grupo == "livros" %}
 
-                <!-- registro -->
+                <!-- registros -->
                 <div class="bg-cnec-azul-escuro rounded-lg p-4 w-full md:w-1/2 max-h-80 overflow-y-auto">
                     <h2 class="font-bold mb-3 text-lg text-cnec-branco">Livros cadastrados</h2>
 
                     <ul class="space-y-2">
                         {% for livro in livros %}
-                            <li class="bg-cnec-branco p-2 rounded text-cnec-azul-escuro">
+                            <li class="group flex justify-between items-center hover:bg-cnec-amarelo-claro bg-cnec-branco p-2 rounded text-cnec-azul-escuro">
                                 {{livro.nome}}
+                                <form action="/cadastro/livros/delete/{{livro.id}}" method="POST" >
+                                    <button type="submit" class="bg-opacity-0 text-transparent group-hover:text-cnec-azul-escuro group-hover:bg-cnec-amarelo cursor-pointer font-bold px-2 py-1 rounded">
+                                        Excluir
+                                    </button>
+                                </form>
                             </li>
                         {% endfor %}
                     </ul>
+
                 </div>
 
                 <!-- formulario -->

@@ -8,3 +8,9 @@ def novoLivro(titulo):
     novo_livro = Livro(nome=titulo)
     db.session.add(novo_livro)
     db.session.commit()
+
+def deleteLivro(id):
+    livro = db.session.get(Livro, id)
+    if livro:
+        db.session.delete(livro)
+        db.session.commit()
