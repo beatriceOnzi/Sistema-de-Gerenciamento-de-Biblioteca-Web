@@ -29,7 +29,7 @@ def cadastrar_novo_aluno():
 
 @bp.route('/alunos/delete/<int:id>', methods=['POST'])
 def deletar_aluno(id):
-    deleteAluno({id})
+    deleteAluno(id)
     return redirect(url_for('cadastro.carregar_cadastro_alunos'))
 
 # Livros
@@ -46,5 +46,5 @@ def cadastrar_novo_livro():
 
 @bp.route('/livros/delete/<int:id>', methods=['POST'])
 def deletar_livro(id):
-    deleteLivro({id})
+    deleteLivro(id)
     return redirect(url_for('cadastro.carregar_cadastro_livros'))

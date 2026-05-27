@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, render_template
 import services.home_service as home_service
 import adicionar_dados as adicionar_dados
 

@@ -1,7 +1,7 @@
 from models import db, Emprestimo
 from datetime import date, timedelta
 
-# ta desatualizado
+# exemplo feito de metodos ilegais - ignorar
 def criar_emprestimo(aluno_id, livro_id):
 
     data_devolucao = date.today() + timedelta(days=7)
