@@ -25,7 +25,7 @@
             <div class="grid grid-flow-row grid-cols-2 md:grid-cols-3 gap-5 md:gap-12 bg-cnec-azul-escuro h-max w-max p-6 md:p-14 sm:p-10">
                 {% for turma in turmas %} 
                     <a href="/turma/{{turma.turma}}"
-                       class="text-cnec-branco bg-cnec-azul-claro rounded-sm p-2 md:p-4 px-4 md:px-8 border-4 border-cnec-azul-claro-shadow hover:bg-cnec-amarelo hover:border-cnec-amarelo-shadow hover:text-cnec-amarelo-escuro transition-all duration-400 transform hover:scale-105 text-xl font-bold">
+                       class="text-cnec-branco bg-cnec-azul-claro rounded-sm p-2 md:p-4 px-4 md:px-8 border-4 border-cnec-azul-claro-shadow hover:bg-cnec-amarelo hover:border-cnec-amarelo-shadow hover:text-cnec-amarelo-escuro transition-all duration-300 transform hover:scale-105 text-xl font-bold">
                         {{ turma.turma_formatada }}
                     </a>
                 {% endfor %}

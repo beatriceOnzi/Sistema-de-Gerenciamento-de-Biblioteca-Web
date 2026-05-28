@@ -23,13 +23,13 @@ def carregar_cadastro_alunos():
 def cadastrar_novo_aluno():
     nome_aluno = request.form.get('nome_aluno')
     turma = request.form.get('turma')
-    novoAluno(nome_aluno, turma)
+    novo_aluno(nome_aluno, turma)
     return redirect(url_for('cadastro.carregar_cadastro_alunos'))
 
 
 @bp.route('/alunos/delete/<int:id>', methods=['POST'])
 def deletar_aluno(id):
-    deleteAluno(id)
+    delete_aluno(id)
     return redirect(url_for('cadastro.carregar_cadastro_alunos'))
 
 # Livros
@@ -41,10 +41,10 @@ def carregar_cadastro_livros():
 @bp.route('/livros/novo', methods=['POST'])
 def cadastrar_novo_livro():
     titulo = request.form.get('titulo')
-    novoLivro(titulo)
+    novo_livro(titulo)
     return redirect(url_for('cadastro.carregar_cadastro_livros'))
 
 @bp.route('/livros/delete/<int:id>', methods=['POST'])
 def deletar_livro(id):
-    deleteLivro(id)
+    delete_livro(id)
     return redirect(url_for('cadastro.carregar_cadastro_livros'))
