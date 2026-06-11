@@ -1,11 +1,15 @@
 from flask import Flask, render_template
 from config import Config
-from models import db
-from routes import registrar_routes
+from src.models import db
+from src.routes import registrar_routes
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(
+        __name__,
+        template_folder="src/templates",
+        static_folder="src/static"
+    )
 
     app.config.from_object(config_class)
 
