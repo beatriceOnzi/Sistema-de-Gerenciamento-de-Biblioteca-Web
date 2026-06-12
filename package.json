@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "python app.py",
-    "watch": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
-    "build": "npx tailwindcss -i ./static/css/input.css -o ./static/css/index.css --minify"
+    "watch": "npx tailwindcss -i src/static/css/input.css -o src/static/css/output.css --watch",
+    "build": "npx tailwindcss -i src/static/css/input.css -o src/static/css/index.css --minify"
   },
   "repository": {
     "type": "git",
