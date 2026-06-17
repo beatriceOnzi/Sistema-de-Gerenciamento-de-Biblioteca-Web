@@ -4,15 +4,21 @@
 
 {% block content %}
 
-<div class="flex items-center justify-center w-full">
+<div class="flex items-center justify-center w-full h-max m-10">
 
-    <div class="flex flex-col">
-        <div class="px-6 py-3 text-xl font-semibold bg-cnec-azul text-cnec-branco border-b-4 border-cnec-amarelo">
+    <div class="flex flex-col bg-cnec-azul w-5/6 max-w-6xl">
+        <div class="px-6 py-3 text-xl font-semibold  text-cnec-branco border-b-4 border-cnec-amarelo">
             {{turma}}º Ano
         </div>
-        <div class="bg-cnec-azul p-10 min-w-[300px]">
+        <div class="p-4 justify-center w-full max-w-full">
+            
+            <div class="flex flex-col justify-between gap-4 lg:flex-row p-4 h-96 w-full max-w-full bg-cnec-azul-escuro">
+                <div id="tabela_registro" class="text-sm lg:w-1/2"></div>
+                <div id="tabela_atual" class="text-sm lg:w-1/2"></div>
+            </div>
+            
 
-            <ul class="flex flex-col gap-3">
+            <!-- <ul class="flex flex-col gap-3">
 
                 {% for aluno in alunos_turma %}
                     <li class="px-4 py-2 bg-cnec-azul-escuro text-cnec-branco border-l-4 border-cnec-amarelo
@@ -20,9 +26,10 @@
                                transition-all duration-200">
                         {{aluno.nome}}
                     </li>
+
                 {% endfor %}
 
-            </ul>
+            </ul> -->
 
         </div>
 

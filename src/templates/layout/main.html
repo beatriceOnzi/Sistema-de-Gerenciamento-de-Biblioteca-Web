@@ -2,12 +2,11 @@
 <html>
 <head>
     <title>{% block title %}Biblioteca CNEC{% endblock %}</title>
-    <link href="https://unpkg.com/tabulator-tables@5.6.2/dist/css/tabulator.min.css" rel="stylesheet">
     <link href="../../static/css/output.css" rel="stylesheet">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body class="font-poppins min-h-screen bg-cnec-branco overflow-x-hidden">
+<body id="corpo" class="font-poppins min-h-screen bg-cnec-branco overflow-x-hidden">
 
     {% include "partials/navbar.html" %}
 
@@ -15,9 +14,12 @@
         {% block content %}
         {% endblock %}
     </main>
-    
-    <script src="https://unpkg.com/tabulator-tables@5.6.2/dist/js/tabulator.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.5.0/dist/js/tabulator.min.js"></script>
+   
+    <script src="{{ url_for('static', filename='main.js') }}" type="module"></script>
+    <script src="../../static/js/tables.js" type="module"></script>
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 @import url('https://googleapis.com');
+@import "tabulator-tables/dist/css/tabulator_modern.min.css";
 
 @tailwind base;
 @tailwind components;
