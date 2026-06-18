@@ -1358,7 +1358,7 @@ body.tabulator-print-fullscreen-hide>:not(.tabulator-print-fullscreen){
 }
 
 .tabulator .tabulator-header .tabulator-col:first-child{
-  padding-left:10px
+  padding-left:5px
 }
 
 .tabulator .tabulator-header .tabulator-col .tabulator-col-content .tabulator-col-title .tabulator-title-editor{
@@ -2127,6 +2127,10 @@ video {
   margin:2.5rem
 }
 
+.m-1{
+  margin:0.25rem
+}
+
 .my-2{
   margin-top:0.5rem;
   margin-bottom:0.5rem
@@ -2151,6 +2155,14 @@ video {
 
 .mt-4{
   margin-top:1rem
+}
+
+.mt-5{
+  margin-top:1.25rem
+}
+
+.mt-6{
+  margin-top:1.5rem
 }
 
 .block{
@@ -2206,6 +2218,10 @@ video {
   height:max-content
 }
 
+.h-5\/6{
+  height:83.333333%
+}
+
 .max-h-80{
   max-height:20rem
 }
@@ -2245,6 +2261,10 @@ video {
 .w-max{
   width:-moz-max-content;
   width:max-content
+}
+
+.w-11\/12{
+  width:91.666667%
 }
 
 .max-w-5xl{
@@ -2579,6 +2599,27 @@ video {
   line-height:1.75rem
 }
 
+.text-xs{
+  font-size:0.75rem;
+  line-height:1rem
+}
+
+.text-\[8px\]{
+  font-size:8px
+}
+
+.text-\[10px\]{
+  font-size:10px
+}
+
+.text-\[80px\]{
+  font-size:80px
+}
+
+.text-\[9px\]{
+  font-size:9px
+}
+
 .font-bold{
   font-weight:700
 }
@@ -2795,6 +2836,11 @@ video {
   .sm\:p-10{
     padding:2.5rem
   }
+
+  .sm\:text-sm{
+    font-size:0.875rem;
+    line-height:1.25rem
+  }
 }
 
 @media (min-width: 768px){
@@ -2886,6 +2932,10 @@ video {
 }
 
 @media (min-width: 1024px){
+  .lg\:m-10{
+    margin:2.5rem
+  }
+
   .lg\:h-12{
     height:3rem
   }
