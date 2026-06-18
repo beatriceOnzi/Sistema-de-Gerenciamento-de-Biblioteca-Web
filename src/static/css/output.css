@@ -2127,10 +2127,6 @@ video {
   margin:2.5rem
 }
 
-.m-4{
-  margin:1rem
-}
-
 .my-2{
   margin-top:0.5rem;
   margin-bottom:0.5rem
@@ -2210,10 +2206,6 @@ video {
   height:max-content
 }
 
-.h-4\/5{
-  height:80%
-}
-
 .max-h-80{
   max-height:20rem
 }
@@ -2234,17 +2226,16 @@ video {
   width:8rem
 }
 
+.w-5\/6{
+  width:83.333333%
+}
+
 .w-96{
   width:24rem
 }
 
 .w-auto{
   width:auto
-}
-
-.w-fit{
-  width:-moz-fit-content;
-  width:fit-content
 }
 
 .w-full{
@@ -2254,31 +2245,6 @@ video {
 .w-max{
   width:-moz-max-content;
   width:max-content
-}
-
-.w-5\/6{
-  width:83.333333%
-}
-
-.w-11\/12{
-  width:91.666667%
-}
-
-.w-2\/4{
-  width:50%
-}
-
-.w-5\/12{
-  width:41.666667%
-}
-
-.w-min{
-  width:-moz-min-content;
-  width:min-content
-}
-
-.w-1\/5{
-  width:20%
 }
 
 .max-w-5xl{
@@ -2360,10 +2326,6 @@ video {
 
 .gap-8{
   gap:2rem
-}
-
-.gap-52{
-  gap:13rem
 }
 
 .gap-x-7{
@@ -2461,6 +2423,11 @@ video {
   border-color:transparent
 }
 
+.bg-black{
+  --tw-bg-opacity:1;
+  background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))
+}
+
 .bg-blue-900{
   --tw-bg-opacity:1;
   background-color:rgb(30 58 138 / var(--tw-bg-opacity, 1))
@@ -2522,10 +2489,6 @@ video {
 
 .p-6{
   padding:1.5rem
-}
-
-.p-3{
-  padding:0.75rem
 }
 
 .px-0{
@@ -2606,19 +2569,14 @@ video {
   line-height:1.75rem
 }
 
-.text-xl{
-  font-size:1.25rem;
-  line-height:1.75rem
-}
-
 .text-sm{
   font-size:0.875rem;
   line-height:1.25rem
 }
 
-.text-xs{
-  font-size:0.75rem;
-  line-height:1rem
+.text-xl{
+  font-size:1.25rem;
+  line-height:1.75rem
 }
 
 .font-bold{
@@ -2722,7 +2680,9 @@ video {
 
 .erro{
   --tw-bg-opacity:1;
-  background-color:rgb(245 221 142 / var(--tw-bg-opacity, 1))
+  background-color:rgb(153 27 27 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity:1;
+  color:rgb(245 245 242 / var(--tw-text-opacity, 1))
 }
 
 .sucesso{
@@ -2938,10 +2898,6 @@ video {
     flex-direction:row
   }
 
-  .lg\:justify-around{
-    justify-content:space-around
-  }
-
   .lg\:gap-x-9{
     -moz-column-gap:2.25rem;
          column-gap:2.25rem
@@ -2953,19 +2909,9 @@ video {
 }
 
 @media (min-width: 1280px){
-  .xl\:flex-row{
-    flex-direction:row
-  }
-
   .xl\:gap-x-12{
     -moz-column-gap:3rem;
          column-gap:3rem
-  }
-}
-
-@media (min-width: 1536px){
-  .\32xl\:flex-row{
-    flex-direction:row
   }
 }
 

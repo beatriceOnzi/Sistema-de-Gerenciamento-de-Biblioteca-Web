@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template
-import src.services.home_service as home_service
-import src.adicionar_dados as adicionar_dados
+import src.services.turmas_service as turmas_service
+# import src.adicionar_dados as adicionar_dados
 
-bp = Blueprint("home", __name__, url_prefix="/")
+bp = Blueprint("turmas", __name__, url_prefix="/")
 
 '''
 1 -> turmas 
@@ -14,5 +14,5 @@ bp = Blueprint("home", __name__, url_prefix="/")
 
 @bp.route('', methods=['GET'])
 def index():
-    turmas = home_service.get_turmas()
+    turmas = turmas_service.get_turmas()
     return render_template('turmas.html', current_page = 1, turmas = turmas)

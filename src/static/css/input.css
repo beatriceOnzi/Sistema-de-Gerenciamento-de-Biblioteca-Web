@@ -15,7 +15,7 @@
 }
 
 .erro {
-  @apply bg-cnec-amarelo-claro
+  @apply bg-red-800 text-cnec-branco
 }
 
 .sucesso {

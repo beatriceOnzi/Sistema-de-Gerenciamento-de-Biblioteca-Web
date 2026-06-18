@@ -1,43 +1,42 @@
-from src.models import db, Aluno, Turma
+from src.repositories.aluno_repository import AlunoRepository
+from src.repositories.turma_repository import TurmaRepository
+
+aluno_repository = AlunoRepository()
+turma_repository = TurmaRepository()
 
 def get_alunos():
-    alunos = Aluno.query.order_by(Aluno.turma).all()
-    return alunos
+    return aluno_repository.get_alunos()
 
 def get_aluno_by_nome(nome):
-    aluno = Aluno.query.filter_by(nome=nome).first()
-    return aluno
+    return aluno_repository.get_aluno_by_nome(nome)
 
-def criar_aluno(nome_aluno, turma):
-    novo_aluno = Aluno(nome=nome_aluno, turma=turma)
-    db.session.add(novo_aluno)
-    db.session.commit()
+def criar_aluno(dados):
+    return aluno_repository.criar_aluno(dados['nome'], dados['turma'])
 
 def deletar_aluno(id):
-    aluno = db.session.get(Aluno, id)
-    if aluno:
-        db.session.delete(aluno)
-        db.session.commit()
+    return aluno_repository.deletar_aluno(id)
 
-def validar_aluno(nome, turma):
+def validar_aluno(dados):
     erros = []
 
-    if len(nome) >= 120:
+    if len(dados.get('nome')) >= 120:
         erros.append("Digite um nome com menos de 120 caracteres")
     
-    if len(nome) < 5:
+    if len(dados.get('nome')) < 5:
         erros.append("Digite o nome completo do aluno")
     
-    apenas_letras = nome.replace(" ", "").isalpha()
+    apenas_letras = dados.get('nome').replace(" ", "").isalpha()
     if not apenas_letras:
         erros.append("Digite apenas letras")
     
-    turma_existe = Turma.query.filter_by(turma=turma).first()
+    turma_existe = turma_repository.existe(dados.get('turma'))
     if not turma_existe:
         erros.append("Turma inválida")
     
     return erros
-    
+
+def existe_aluno(id):
+    return aluno_repository.existe_aluno(id)
 
 # quando nao é validado, a pagina recarrega, e o nome/ turma que estava escrito, some. Tem como solucionar isso
 # utilizando javascript, ou só passando na rota o valor que estava lá.

@@ -1,19 +1,16 @@
-from src.models import db, Livro
+from src.repositories.livro_repository import LivroRepository
+
+livro_repository = LivroRepository()
 
 def get_livros():
-    livros = Livro.query.order_by(Livro.nome).all()
+    livros = livro_repository.get_livros()
     return livros
 
 def criar_livro(titulo):
-    novo_livro = Livro(nome=titulo)
-    db.session.add(novo_livro)
-    db.session.commit()
+    livro_repository.criar_livro(titulo)
 
 def deletar_livro(id):
-    livro = db.session.get(Livro, id)
-    if livro:
-        db.session.delete(livro)
-        db.session.commit()
+    livro_repository.deletar_livro(id)
 
 def validar_livro(titulo):
     erros = []
@@ -24,7 +21,4 @@ def validar_livro(titulo):
     if len(titulo) <= 0:
         erros.append("Título inválido")
     
-    print(erros)
-    
     return erros
-    

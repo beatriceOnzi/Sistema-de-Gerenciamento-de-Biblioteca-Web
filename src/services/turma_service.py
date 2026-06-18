@@ -1,21 +1,11 @@
-from src.models import db, Aluno, Turma
+from src.repositories.aluno_repository import AlunoRepository
+from src.repositories.turma_repository import TurmaRepository
+
+aluno_repository = AlunoRepository()
+turma_repository = TurmaRepository()
 
 def adicionar_turmas():
-
-    if Turma.query.first():
-        return
-
-    for i in range(1, 10):
-
-        turma = Turma(
-            turma=i,
-            turma_formatada=f"{i}º Ano"
-        )
-
-        db.session.add(turma)
-
-    db.session.commit()
+    turma_repository.adicionar_turmas()
 
 def get_alunos_turma(turma):
-    alunos_turma = Aluno.query.filter_by(turma=turma).all()
-    return alunos_turma
+    return aluno_repository.get_alunos_turma(turma)

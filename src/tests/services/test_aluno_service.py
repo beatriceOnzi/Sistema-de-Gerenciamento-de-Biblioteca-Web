@@ -3,8 +3,12 @@ from src.models.aluno import Aluno
 
 
 def test_criar_criar_aluno(app):
+    dados = {
+        'nome': "Beatrice teste",
+        'turma': 3
+    }
 
-    criar_aluno("Beatrice teste", 3)
+    criar_aluno(dados)
 
     aluno_teste = Aluno.query.filter_by(
         nome="Beatrice teste"
@@ -16,7 +20,12 @@ def test_criar_criar_aluno(app):
 
 def test_get_aluno_por_nome(app):
 
-    criar_aluno("Beatrice teste", 3)
+    dados = {
+        'nome': "Beatrice teste",
+        'turma': 3
+    }
+
+    criar_aluno(dados)
 
     aluno_teste = get_aluno_by_nome("Beatrice teste")
 
@@ -25,7 +34,12 @@ def test_get_aluno_por_nome(app):
 
 
 def test_deletar_aluno(app):
-    criar_aluno("Beatrice teste", 3)
+    dados = {
+        'nome': "Beatrice teste",
+        'turma': 3
+    }
+
+    criar_aluno(dados)
     aluno_teste = Aluno.query.filter_by(nome="Beatrice teste").first()
 
     assert aluno_teste is not None
@@ -36,21 +50,45 @@ def test_deletar_aluno(app):
     assert aluno_deletado is None
 
 def test_validar_aluno_correto(app):
-    erros = validar_aluno("Beatrice Nome Válido", 3)
+    dados = {
+        'nome': "Beatrice teste",
+        'turma': 3
+    }
+    erros = validar_aluno(dados)
     assert len(erros) == 0
 
 def test_validar_aluno_muitos_caracteres(app):
-    erros = validar_aluno("Essa String tem mais de 120 caracteres At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium", 4)
+    dados = {
+        'nome': "Essa String tem mais de 120 caracteres At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium teste",
+        'turma': 4
+    }
+
+    erros = validar_aluno(dados)
     assert "Digite um nome com menos de 120 caracteres" in erros
 
 def test_validar_aluno_poucos_caracteres(app):
-    erros = validar_aluno("A", 4)
+    dados = {
+        'nome': "a",
+        "turma": 4
+    }
+
+    erros = validar_aluno(dados)
     assert "Digite o nome completo do aluno" in erros
 
 def test_validar_aluno_caracteres_proibidos(app):
-    erros = validar_aluno("Esse nome possui algo alem de letras $", 4)
+    dados = {
+        'nome': "Esse nome possui algo alem de letras $",
+        "turma": 4
+    }
+
+    erros = validar_aluno(dados)
     assert "Digite apenas letras" in erros
 
 def test_aluno_turma_invalida(app):
-    erros = validar_aluno("Nome Exemplo", 10)
+    dados = {
+        'nome': "Nome Teste",
+        "turma": 50
+    }
+
+    erros = validar_aluno(dados)
     assert "Turma inválida" in erros
