@@ -1,3 +1,7 @@
+import { get_records_table_data } from '/static/js/tables_data.js'
+
+const records_table_data = await get_records_table_data();
+
 var tabledata = [
  	{id:1, data_empre:"17-06-2026", aluno:"Oli Bob", livro:"O principe encantado e a princesa amaldiçoada", data_dev_prev:"24-06-2026"},
  	{id:2, data_empre:"17-06-2026", aluno:"Mary May", livro:"blue", data_dev_prev:"24-06-2026"},
@@ -6,7 +10,6 @@ var tabledata = [
  	{id:5, data_empre:"17-06-2026", aluno:"Margret Marmajuke", livro:"yellow", data_dev_prev:"24-06-2026"},
  ];
 
- 
 var tabela_registro = new Tabulator("#tabela_registro", {
  	height: "100%",
     data:tabledata,
@@ -18,7 +21,6 @@ var tabela_registro = new Tabulator("#tabela_registro", {
 	 	{title:"Data de Devolução", field:"data_dev_real", hozAlign:"center", headerWordWrap:true, headerSort: false},
  	],
 });
-
 
 var tabela_atual = new Tabulator("#tabela_atual", {
  	height: "100%",

@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from src.services.aluno_service import *
 from src.services.livro_service import *
 
 bp = Blueprint("cadastro_livros", __name__, url_prefix="/cadastro/livros")

@@ -1,8 +1,11 @@
 from src.repositories.aluno_repository import AlunoRepository
 from src.repositories.turma_repository import TurmaRepository
+from src.repositories.turmas_repository import TurmasRepository
+
 
 aluno_repository = AlunoRepository()
 turma_repository = TurmaRepository()
+turmas_repository = TurmasRepository()
 
 def get_alunos():
     return aluno_repository.get_alunos()
@@ -29,7 +32,7 @@ def validar_aluno(dados):
     if not apenas_letras:
         erros.append("Digite apenas letras")
     
-    turma_existe = turma_repository.existe(dados.get('turma'))
+    turma_existe = turmas_repository.existe(dados.get('turma'))
     if not turma_existe:
         erros.append("Turma inválida")
     

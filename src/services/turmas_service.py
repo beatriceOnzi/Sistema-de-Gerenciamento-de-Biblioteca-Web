@@ -1,7 +1,10 @@
-from src.repositories.turmas_repository import TurmaRepository
+from src.repositories.turmas_repository import TurmasRepository
 
-turma_repository = TurmaRepository()
+turmas_repository = TurmasRepository()
 
 def get_turmas():
-    turmas = turma_repository.get_turmas()
+    turmas = turmas_repository.get_turmas()
+    if not turmas:
+        turmas_repository.adicionar_turmas()
+        turmas = turmas_repository.get_turmas()
     return turmas
