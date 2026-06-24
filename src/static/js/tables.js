@@ -2,17 +2,21 @@ import { get_records_table_data } from '/static/js/tables_data.js'
 
 const records_table_data = await get_records_table_data();
 
+const tabledata_registro = records_table_data.map(emp => ({
+    id: emp.id,
+    data_empre: emp.data_emprestimo,
+    aluno: emp.aluno,
+    livro: emp.livro,
+    data_dev_prev: emp.data_devolucao_prevista,
+}));
+
 var tabledata = [
- 	{id:1, data_empre:"17-06-2026", aluno:"Oli Bob", livro:"O principe encantado e a princesa amaldiçoada", data_dev_prev:"24-06-2026"},
- 	{id:2, data_empre:"17-06-2026", aluno:"Mary May", livro:"blue", data_dev_prev:"24-06-2026"},
- 	{id:3, data_empre:"17-06-2026", aluno:"Christine Lobowski", livro:"green", data_dev_prev:"24-06-2026"},
- 	{id:4, data_empre:"17-06-2026", aluno:"Brendon Philips", livro:"orange", data_dev_prev:"24-06-2026"},
- 	{id:5, data_empre:"17-06-2026", aluno:"Margret Marmajuke", livro:"yellow", data_dev_prev:"24-06-2026"},
- ];
+ 	{id:1, data_empre:"", aluno:"", livro:"", data_dev_prev:""},
+ 	];
 
 var tabela_registro = new Tabulator("#tabela_registro", {
  	height: "100%",
-    data:tabledata,
+    data:tabledata_registro,
  	layout:"fitColumns",
  	columns:[
 	 	{title:"Data de Empréstimo", field:"data_empre", hozAlign:"center", headerWordWrap:true, headerSort: false},

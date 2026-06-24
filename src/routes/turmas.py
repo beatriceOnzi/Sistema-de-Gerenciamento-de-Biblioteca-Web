@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 import src.services.turmas_service as turmas_service
-# import src.adicionar_dados as adicionar_dados
+import src.adicionar_dados as adicionar_dados
 
 bp = Blueprint("home", __name__, url_prefix="/")
 

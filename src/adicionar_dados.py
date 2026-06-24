@@ -1,8 +1,32 @@
-from src.models import db, Aluno, Turma, Livro
+from src.models import db, Aluno, Turma, Livro, Emprestimo
 
 def get_alunos():
     alunos = Aluno.query.all()
     return alunos
+
+def add_emprestimo():
+    emprestimo = Emprestimo(
+        aluno_id=4,
+        livro_id=1,
+        turma=3,
+        semana=1
+    )
+    db.session.add(emprestimo)
+    emprestimo2 = Emprestimo(
+        aluno_id=3,
+        livro_id=2,
+        turma=3,
+        semana=1
+    )
+    db.session.add(emprestimo2)
+    emprestimo3 = Emprestimo(
+        aluno_id=3,
+        livro_id=2,
+        turma=3,
+        semana=1
+    )
+    db.session.add(emprestimo3)
+    db.session.commit()
 
 def add_alunos():
     novo_aluno = Aluno(nome="Carlo", turma=1)

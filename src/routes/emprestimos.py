@@ -11,5 +11,5 @@ def carregar_turma(turma):
 @bp.route('/<turma>/get_emprestimos_record')
 def get_emprestimos_record(turma):
     emprestimos = emprestimos_service.get_emprestimos_record(turma)
-    print(f'emprestimos {emprestimos}')
+    print(f'emprestimos rota {emprestimos}')
     return jsonify(emprestimos)

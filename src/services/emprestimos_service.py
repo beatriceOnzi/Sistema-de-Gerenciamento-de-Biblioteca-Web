@@ -17,5 +17,6 @@ def get_semana_atual(turma):
 
 def get_emprestimos_record(turma):
     semana_atual = get_semana_atual(turma)
-    emprestimos_repository.get_emprestimos_record(turma, semana_atual)
+    emprestimos = emprestimos_repository.get_emprestimos_record(turma, semana_atual)
+    return emprestimos
     
