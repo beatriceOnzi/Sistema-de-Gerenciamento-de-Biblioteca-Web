@@ -4,7 +4,7 @@ from app import create_app
 from config import TestConfig
 from src.models import db
 
-from src.services.turma_service import adicionar_turmas
+from services.turmas_service import adicionar_turmas
 
 @pytest.fixture
 def app():

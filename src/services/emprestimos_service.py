@@ -9,14 +9,10 @@ turma_repository = TurmaRepository()
 turmas_repository = TurmasRepository()
 emprestimos_repository = EmprestimosRepository()
 
-def adicionar_turmas():
-    turmas_repository.adicionar_turmas()
-
 def get_alunos_turma(turma):
     return aluno_repository.get_alunos_turma(turma)
 
 def get_semana_atual(turma):
-    print("entrou no service")
     return turma_repository.get_semana_atual(turma)
 
 def get_emprestimos_record(turma):
