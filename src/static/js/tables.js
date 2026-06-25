@@ -1,7 +1,8 @@
 import { 
 	get_records_table_data,
 	get_cadastro_table_data,
-    save_title
+    save_title,
+    set_data_devolucao
 } from '/static/js/tables_data.js'
 
 // Tabela Registros
@@ -45,22 +46,24 @@ var tabela_atual = new Tabulator("#tabela_atual", {
  	columns:[
 	 	{title:"Data de Empréstimo", field:"data_empre", hozAlign:"center", headerWordWrap:true, headerSort: false},
 	 	{title:"Aluno", field:"aluno",hozAlign:"left", formatter: "textarea", headerSort: false},
-	 	{title:"Livro", field:"livro", hozAlign:"left", formatter: "textarea", editor:"input", headerSort: false, cellEdited: handle_save_title },
+	 	{title:"Livro", field:"livro", hozAlign:"left", formatter: "textarea", editor:"input", headerSort: false, cellEdited: salvar_emprestimo },
 	 	{title:"Data de Devolução", field:"data_dev_prev", hozAlign:"center", headerWordWrap:true, headerSort: false},
 	],
 });
 
-function handle_save_title(cell){
+function salvar_emprestimo(cell){
     var title = cell.getValue();
     var id = cell.getRow().getData().id;
+    var aluno = cell.getRow().getData().aluno;
     save_title(id, title)
+    set_data_devolucao(title, aluno)
 }
 
-function devolucao_pendente_style(cell, formatterParams, onRendered) {
+function devolucao_pendente_style(cell) {
     var value = cell.getValue();
 
     if (value == null || value == "" || value == "null") {
-            cell.getElement().style.cssText += "background-color: #EB2D2DBF;";
+            cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
     }
     return value ?? "Pendente";
 }

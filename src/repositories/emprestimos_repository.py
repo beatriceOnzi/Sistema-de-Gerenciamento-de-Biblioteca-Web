@@ -1,27 +1,54 @@
-from src.models import db, Emprestimo
+from src.models import db, Emprestimo, Aluno
+from datetime import date
 
 class EmprestimosRepository:
     def get_emprestimos_record(self, turma, semana_atual):
         turma = int(turma)
         semana_record = semana_atual - 1
-        emprestimos = Emprestimo.query.filter(
+        emprestimos = Emprestimo.query.join(Aluno).filter(
             Emprestimo.turma == turma,
             Emprestimo.semana == semana_record
-        ).all()
+        ).order_by(Aluno.nome).all()
         return [self.serialize_emprestimo(emp) for emp in emprestimos]
     
     def get_emprestimos_cadastro(self, turma, semana_atual):
         turma = int(turma)
-        semana_record = semana_atual
-        emprestimos = Emprestimo.query.filter(
+        emprestimos = Emprestimo.query.join(Aluno).filter(
+            Emprestimo.turma == turma,
+            Emprestimo.semana == semana_atual
+        ).order_by(Aluno.nome).all()
+        return [self.serialize_emprestimo(emp) for emp in emprestimos]
+    
+    def get_emprestimo_record(self, aluno, turma, semana_record):
+        turma = int(turma)
+        emprestimo = Emprestimo.query.join(Aluno).filter(
+            Aluno.nome == aluno,
             Emprestimo.turma == turma,
             Emprestimo.semana == semana_record
-        ).all()
-        return [self.serialize_emprestimo(emp) for emp in emprestimos]
+        ).order_by(Aluno.nome).first()
+        print(emprestimo)
+        return emprestimo
     
     def save_title(self, id, livro_id):
         emprestimo = Emprestimo.query.filter_by(id = id).one()
         emprestimo.livro_id = livro_id
+        db.session.commit()
+    
+    def limpar_livro_emprestimo(self, id):
+        emprestimo = Emprestimo.query.filter_by(id = id).one()
+        emprestimo.livro_id = None
+        db.session.commit()
+    
+    def set_data_devolucao(self, emprestimo):
+        print(f'set antes {emprestimo.data_devolucao}]')
+        emprestimo.data_devolucao = date.today()
+        print(f'depois {emprestimo.data_devolucao}]')
+        db.session.commit()
+
+    def limpar_data_devolucao(self, emprestimo):
+        print(f'limpar antes {emprestimo.data_devolucao}')
+        emprestimo.data_devolucao = None
+        print(f'depois {emprestimo.data_devolucao}')
         db.session.commit()
 
     def serialize_emprestimo(self, emp):

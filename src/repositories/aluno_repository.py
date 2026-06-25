@@ -21,7 +21,7 @@ class AlunoRepository:
             db.session.commit()
         
     def get_alunos_turma(self, turma_id):
-        alunos_turma = Aluno.query.filter_by(turma=turma_id).all()
+        alunos_turma = Aluno.query.filter_by(turma=turma_id).order_by(Aluno.nome).all()
         return alunos_turma
     
     def existe_aluno(self, id):

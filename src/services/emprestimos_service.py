@@ -38,5 +38,24 @@ def create_emprestimos_cadastro(turma):
     return "implementar"
 
 def save_title(id, titulo):
+    if titulo == "" or titulo == None:
+        limpar_livro_emprestimo(id)
+        return
     livro_id = livro_repository.get_id_by_title(titulo)
     emprestimos_repository.save_title(id, livro_id)
+
+def set_data_devolucao(titulo, aluno, turma):
+    print("entrou no service")
+    semana_atual = get_semana_atual(turma)
+    semana_record = semana_atual - 1
+
+    emprestimo_record = emprestimos_repository.get_emprestimo_record(aluno, turma, semana_record)
+    print("Emprestimo record", emprestimo_record)
+    
+    if titulo == "" or titulo == None:
+        emprestimos_repository.limpar_data_devolucao(emprestimo_record)
+    else:
+        emprestimos_repository.set_data_devolucao(emprestimo_record)
+    
+def limpar_livro_emprestimo(id):
+    emprestimos_repository.limpar_livro_emprestimo(id)

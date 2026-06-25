@@ -23,7 +23,7 @@ class LivroRepository:
         if not livro:
             self.criar_livro(titulo)
             livro = Livro.query.filter_by(nome=titulo).first()
-            
+
         return livro.id
-        
+
         

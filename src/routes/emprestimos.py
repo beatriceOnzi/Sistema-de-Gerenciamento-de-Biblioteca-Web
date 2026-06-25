@@ -5,8 +5,7 @@ bp = Blueprint("turma", __name__, url_prefix="/turma")
 
 @bp.route('/<turma>/')
 def carregar_turma(turma):
-    alunos_turma = emprestimos_service.get_alunos_turma(turma)
-    return render_template('turma.html', current_page = 1, alunos_turma = alunos_turma, turma = turma)
+    return render_template('turma.html', current_page = 1, turma = turma)
 
 @bp.route('/<turma>/get_emprestimos_record')
 def get_emprestimos_record(turma):
@@ -26,4 +25,14 @@ def save_title(turma):
     titulo = data.get('title')
 
     emprestimos_service.save_title(id, titulo)
+    return jsonify("funciona")
+
+@bp.post('/<turma>/set_data_devolucao')
+def set_data_devolucao(turma):
+    data = request.get_json()
+
+    titulo = data.get('title')
+    aluno = data.get('aluno')
+
+    emprestimos_service.set_data_devolucao(titulo, aluno, turma)
     return jsonify("funciona")

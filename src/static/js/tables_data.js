@@ -27,3 +27,21 @@ export async function save_title(id, title) {
 
     const data = await response.json()
 }
+
+export async function set_data_devolucao(title, aluno) {
+    const response = await fetch(`./set_data_devolucao`, {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            title,
+            aluno
+        })
+    });
+
+    const data = await response.json()
+}
