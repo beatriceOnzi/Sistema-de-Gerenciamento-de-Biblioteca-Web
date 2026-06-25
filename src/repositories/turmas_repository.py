@@ -22,3 +22,4 @@ class TurmasRepository:
 
         db.session.commit()
     
+    

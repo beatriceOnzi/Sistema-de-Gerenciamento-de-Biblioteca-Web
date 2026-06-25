@@ -1,31 +1,29 @@
 from src.models import db, Aluno, Turma, Livro, Emprestimo
+from datetime import datetime
 
 def get_alunos():
     alunos = Aluno.query.all()
     return alunos
 
 def add_emprestimo():
-    emprestimo = Emprestimo(
-        aluno_id=4,
-        livro_id=1,
-        turma=3,
-        semana=1
-    )
-    db.session.add(emprestimo)
-    emprestimo2 = Emprestimo(
-        aluno_id=3,
-        livro_id=2,
-        turma=3,
-        semana=1
-    )
-    db.session.add(emprestimo2)
-    emprestimo3 = Emprestimo(
-        aluno_id=3,
-        livro_id=2,
-        turma=3,
-        semana=1
-    )
-    db.session.add(emprestimo3)
+    emprestimo = Emprestimo.query.filter_by(id=5).first()
+    date_string = "2026-06-25"
+    valid_date = datetime.strptime(date_string, "%Y-%m-%d").date()
+    emprestimo.data_devolucao = valid_date
+
+    # db.session.add(emprestimo)
+    # emprestimo2 = Emprestimo(
+    #     aluno_id=2,
+    #     turma=2,
+    #     semana=1
+    # )
+    # db.session.add(emprestimo2)
+    # emprestimo3 = Emprestimo(
+    #     aluno_id=3,
+    #     turma=2,
+    #     semana=1
+    # )
+    # db.session.add(emprestimo3)
     db.session.commit()
 
 def add_alunos():

@@ -3,3 +3,9 @@ export async function get_records_table_data() {
     const data = await response.json()
     return data
 }
+
+export async function get_cadastro_table_data() {
+    const response = await fetch("./get_emprestimos_cadastro");
+    const data = await response.json()
+    return data
+}

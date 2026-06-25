@@ -3,7 +3,16 @@ from src.models import db, Emprestimo
 class EmprestimosRepository:
     def get_emprestimos_record(self, turma, semana_atual):
         turma = int(turma)
-        semana_record = semana_atual # - 1
+        semana_record = semana_atual - 1
+        emprestimos = Emprestimo.query.filter(
+            Emprestimo.turma == turma,
+            Emprestimo.semana == semana_record
+        ).all()
+        return [self.serialize_emprestimo(emp) for emp in emprestimos]
+    
+    def get_emprestimos_cadastro(self, turma, semana_atual):
+        turma = int(turma)
+        semana_record = semana_atual
         emprestimos = Emprestimo.query.filter(
             Emprestimo.turma == turma,
             Emprestimo.semana == semana_record
