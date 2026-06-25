@@ -18,6 +18,11 @@ class EmprestimosRepository:
             Emprestimo.semana == semana_record
         ).all()
         return [self.serialize_emprestimo(emp) for emp in emprestimos]
+    
+    def save_title(self, id, livro_id):
+        emprestimo = Emprestimo.query.filter_by(id = id).one()
+        emprestimo.livro_id = livro_id
+        db.session.commit()
 
     def serialize_emprestimo(self, emp):
         return {

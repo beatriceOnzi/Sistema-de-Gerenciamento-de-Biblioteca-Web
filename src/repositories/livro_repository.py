@@ -16,4 +16,14 @@ class LivroRepository:
         if livro:
             db.session.delete(livro)
             db.session.commit()
+    
+    def get_id_by_title(self, titulo):
+        livro = Livro.query.filter_by(nome=titulo).first()
+
+        if not livro:
+            self.criar_livro(titulo)
+            livro = Livro.query.filter_by(nome=titulo).first()
+            
+        return livro.id
+        
         

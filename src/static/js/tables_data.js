@@ -9,3 +9,21 @@ export async function get_cadastro_table_data() {
     const data = await response.json()
     return data
 }
+
+export async function save_title(id, title) {
+    const response = await fetch(`./save_title`, {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            id,
+            title
+        })
+    });
+
+    const data = await response.json()
+}

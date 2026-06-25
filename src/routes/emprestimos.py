@@ -17,3 +17,13 @@ def get_emprestimos_record(turma):
 def get_emprestimos_cadastro(turma):
     new_emprestimos = emprestimos_service.get_emprestimos_cadastro(turma)
     return jsonify(new_emprestimos)
+
+@bp.post('/<turma>/save_title')
+def save_title(turma):
+    data = request.get_json()
+
+    id = data.get('id')
+    titulo = data.get('title')
+
+    emprestimos_service.save_title(id, titulo)
+    return jsonify("funciona")

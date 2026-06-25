@@ -1,9 +1,11 @@
 from src.repositories.aluno_repository import AlunoRepository
+from src.repositories.livro_repository import LivroRepository
 from src.repositories.turma_repository import TurmaRepository
 from src.repositories.turmas_repository import TurmasRepository
 from src.repositories.emprestimos_repository import EmprestimosRepository
 
 aluno_repository = AlunoRepository()
+livro_repository= LivroRepository()
 turma_repository = TurmaRepository()
 turmas_repository = TurmasRepository()
 emprestimos_repository = EmprestimosRepository()
@@ -34,3 +36,7 @@ def create_emprestimos_cadastro(turma):
     # cria emprestimos no banco para cada aluno com os dados:
     # hoje / nome / ________/ data devolucao prevista
     return "implementar"
+
+def save_title(id, titulo):
+    livro_id = livro_repository.get_id_by_title(titulo)
+    emprestimos_repository.save_title(id, livro_id)
