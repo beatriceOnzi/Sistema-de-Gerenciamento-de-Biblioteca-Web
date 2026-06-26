@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 import src.services.emprestimos_service as emprestimos_service
 
 bp = Blueprint("turma", __name__, url_prefix="/turma")
@@ -36,3 +36,9 @@ def set_data_devolucao(turma):
 
     emprestimos_service.set_data_devolucao(titulo, aluno, turma)
     return jsonify("funciona")
+
+@bp.post('/<turma>/criar_semana_emprestimos')
+def criar_semana_emprestimos(turma):
+    nova_semana = emprestimos_service.criar_semana_emprestimos(turma)
+    # retornar a semana para poder atualizar? 
+    return redirect(url_for('turma.carregar_turma', turma=turma))

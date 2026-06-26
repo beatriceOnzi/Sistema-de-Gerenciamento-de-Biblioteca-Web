@@ -40,16 +40,23 @@ class EmprestimosRepository:
         db.session.commit()
     
     def set_data_devolucao(self, emprestimo):
-        print(f'set antes {emprestimo.data_devolucao}]')
         emprestimo.data_devolucao = date.today()
-        print(f'depois {emprestimo.data_devolucao}]')
         db.session.commit()
 
     def limpar_data_devolucao(self, emprestimo):
-        print(f'limpar antes {emprestimo.data_devolucao}')
         emprestimo.data_devolucao = None
-        print(f'depois {emprestimo.data_devolucao}')
         db.session.commit()
+
+    def criar_semana_emprestimos(self, turma, alunos, semana):
+        for aluno in alunos:
+            novo_emprestimo = Emprestimo(
+                aluno_id=aluno.id,
+                turma=turma,
+                semana=semana
+            )
+            db.session.add(novo_emprestimo)
+        db.session.commit()
+        return "implementar"
 
     def serialize_emprestimo(self, emp):
         return {

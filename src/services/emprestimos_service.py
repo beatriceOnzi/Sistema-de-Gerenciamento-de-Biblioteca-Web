@@ -45,12 +45,9 @@ def save_title(id, titulo):
     emprestimos_repository.save_title(id, livro_id)
 
 def set_data_devolucao(titulo, aluno, turma):
-    print("entrou no service")
-    semana_atual = get_semana_atual(turma)
-    semana_record = semana_atual - 1
+    semana_record = get_semana_atual(turma) - 1
 
     emprestimo_record = emprestimos_repository.get_emprestimo_record(aluno, turma, semana_record)
-    print("Emprestimo record", emprestimo_record)
     
     if titulo == "" or titulo == None:
         emprestimos_repository.limpar_data_devolucao(emprestimo_record)
@@ -59,3 +56,8 @@ def set_data_devolucao(titulo, aluno, turma):
     
 def limpar_livro_emprestimo(id):
     emprestimos_repository.limpar_livro_emprestimo(id)
+
+def criar_semana_emprestimos(turma):
+    avancar_semana(turma)
+    nova_semana = emprestimos_repository.criar_semana_emprestimos(turma, get_alunos_turma(turma), get_semana_atual(turma))
+    return nova_semana
