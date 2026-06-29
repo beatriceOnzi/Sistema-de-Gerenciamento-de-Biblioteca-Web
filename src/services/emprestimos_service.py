@@ -28,19 +28,12 @@ def get_emprestimos_cadastro(turma):
     semana_atual = get_semana_atual(turma)
     emprestimos = emprestimos_repository.get_emprestimos_cadastro(turma, semana_atual)
     return emprestimos
-    #tenta pegar os emprestimos da semana atual (model turma) para exibir data (hj)/nome/________/datadevolcao prevista
-    # se nao existir, cria
-
-def create_emprestimos_cadastro(turma):
-    # chamado quando clica em avancar semana
-    # cria emprestimos no banco para cada aluno com os dados:
-    # hoje / nome / ________/ data devolucao prevista
-    return "implementar"
 
 def save_title(id, titulo):
     if titulo == "" or titulo == None:
         limpar_livro_emprestimo(id)
         return
+    titulo.strip()
     livro_id = livro_repository.get_id_by_title(titulo)
     emprestimos_repository.save_title(id, livro_id)
 
@@ -50,9 +43,11 @@ def set_data_devolucao(titulo, aluno, turma):
     emprestimo_record = emprestimos_repository.get_emprestimo_record(aluno, turma, semana_record)
     
     if titulo == "" or titulo == None:
-        emprestimos_repository.limpar_data_devolucao(emprestimo_record)
+        data_devolucao = emprestimos_repository.limpar_data_devolucao(emprestimo_record)
     else:
-        emprestimos_repository.set_data_devolucao(emprestimo_record)
+        data_devolucao = emprestimos_repository.set_data_devolucao(emprestimo_record)
+    
+    return data_devolucao
     
 def limpar_livro_emprestimo(id):
     emprestimos_repository.limpar_livro_emprestimo(id)

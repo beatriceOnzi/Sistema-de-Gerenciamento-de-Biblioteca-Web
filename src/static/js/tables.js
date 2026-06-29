@@ -10,6 +10,7 @@ const records_table_data = await get_records_table_data();
 
 const tabledata_registro = records_table_data.map(emp => ({
     id: emp.id,
+    aluno_id: emp.aluno_id,
     data_empre: emp.data_emprestimo,
     aluno: emp.aluno,
     livro: emp.livro,
@@ -33,6 +34,7 @@ const cadastro_table_data = await get_cadastro_table_data();
 
 const tabledata_cadastro = cadastro_table_data.map(emp => ({
     id: emp.id,
+    aluno_id: emp.aluno_id,
     data_empre: emp.data_emprestimo,
     aluno: emp.aluno,
     livro: emp.livro,
@@ -51,12 +53,26 @@ var tabela_atual = new Tabulator("#tabela_atual", {
 	],
 });
 
-function salvar_emprestimo(cell){
-    var title = cell.getValue();
-    var id = cell.getRow().getData().id;
-    var aluno = cell.getRow().getData().aluno;
-    save_title(id, title)
-    set_data_devolucao(title, aluno)
+async function salvar_emprestimo(cell){
+    const title = cell.getValue();
+    const id = cell.getRow().getData().id;
+    const aluno_id = cell.getRow().getData().aluno_id;
+    const aluno = cell.getRow().getData().aluno;
+
+    await save_title(id, title);
+    const data_devolucao = await set_data_devolucao(title, aluno);
+    console.log(data_devolucao);
+
+    const row = tabela_registro.getRows().find(
+        row => row.getData().aluno_id === aluno_id
+    );
+
+    if (row) {
+        row.update({
+            data_dev_real: data_devolucao
+        });
+    }
+    row.reformat();
 }
 
 function devolucao_pendente_style(cell) {

@@ -43,9 +43,13 @@ class EmprestimosRepository:
         emprestimo.data_devolucao = date.today()
         db.session.commit()
 
+        return self.formatar_data(emprestimo.data_devolucao)
+
     def limpar_data_devolucao(self, emprestimo):
         emprestimo.data_devolucao = None
         db.session.commit()
+        
+        return None
 
     def criar_semana_emprestimos(self, turma, alunos, semana):
         for aluno in alunos:
@@ -62,8 +66,15 @@ class EmprestimosRepository:
         return {
             "id": emp.id,
             "aluno": emp.aluno.nome if emp.aluno else None,
+            "aluno_id": emp.aluno.id,
             "livro": emp.livro.nome if emp.livro else None,
-            "data_emprestimo": emp.data_emprestimo.isoformat() if emp.data_emprestimo else None,
-            "data_devolucao_prevista": emp.data_devolucao_prevista.isoformat() if emp.data_devolucao_prevista else None,
-            "data_devolucao": emp.data_devolucao.isoformat() if emp.data_devolucao else None
+            "data_emprestimo": self.formatar_data(emp.data_emprestimo),
+            "data_devolucao_prevista": self.formatar_data(emp.data_devolucao_prevista),
+            "data_devolucao": self.formatar_data(emp.data_devolucao),
         }
+    
+    def formatar_data(self, data):
+        if data is None:
+            return None
+
+        return data.strftime("%d-%m-%Y")

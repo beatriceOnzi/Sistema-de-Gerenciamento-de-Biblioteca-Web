@@ -34,11 +34,10 @@ def set_data_devolucao(turma):
     titulo = data.get('title')
     aluno = data.get('aluno')
 
-    emprestimos_service.set_data_devolucao(titulo, aluno, turma)
-    return jsonify("funciona")
+    data_devolucao = emprestimos_service.set_data_devolucao(titulo, aluno, turma)
+    return jsonify(data_devolucao)
 
 @bp.post('/<turma>/criar_semana_emprestimos')
 def criar_semana_emprestimos(turma):
-    nova_semana = emprestimos_service.criar_semana_emprestimos(turma)
-    # retornar a semana para poder atualizar? 
+    emprestimos_service.criar_semana_emprestimos(turma)
     return redirect(url_for('turma.carregar_turma', turma=turma))

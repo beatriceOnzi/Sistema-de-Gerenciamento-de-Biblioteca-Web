@@ -7,6 +7,7 @@ class LivroRepository:
         return livros
 
     def criar_livro(self, titulo):
+        titulo.strip()
         novo_livro = Livro(nome=titulo)
         db.session.add(novo_livro)
         db.session.commit()

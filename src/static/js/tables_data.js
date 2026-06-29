@@ -29,6 +29,7 @@ export async function save_title(id, title) {
 }
 
 export async function set_data_devolucao(title, aluno) {
+    console.log("entra da funcao")
     const response = await fetch(`./set_data_devolucao`, {
 
         method: 'POST',
@@ -44,4 +45,5 @@ export async function set_data_devolucao(title, aluno) {
     });
 
     const data = await response.json()
+    return data
 }
