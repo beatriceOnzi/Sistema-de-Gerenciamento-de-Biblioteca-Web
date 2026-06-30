@@ -10,6 +10,12 @@ export async function get_cadastro_table_data() {
     return data
 }
 
+export async function get_livros() {
+    const response = await fetch("/cadastro/livros/get_livros");
+    const data = await response.json()
+    return data
+}
+
 export async function save_title(id, title) {
     const response = await fetch(`./save_title`, {
 

@@ -2,8 +2,10 @@ import {
 	get_records_table_data,
 	get_cadastro_table_data,
     save_title,
-    set_data_devolucao
-} from '/static/js/tables_data.js'
+    set_data_devolucao,
+    get_livros
+} from './tables_data.js'
+
 
 // Tabela Registros
 const records_table_data = await get_records_table_data();
@@ -48,7 +50,22 @@ var tabela_atual = new Tabulator("#tabela_atual", {
  	columns:[
 	 	{title:"Data de Empréstimo", field:"data_empre", hozAlign:"center", headerWordWrap:true, headerSort: false},
 	 	{title:"Aluno", field:"aluno",hozAlign:"left", formatter: "textarea", headerSort: false},
-	 	{title:"Livro", field:"livro", hozAlign:"left", formatter: "textarea", editor:"input", headerSort: false, cellEdited: salvar_emprestimo },
+	 	{title:"Livro", field:"livro", hozAlign:"left", formatter: "textarea", editor:"input", headerSort: false,
+            editor:"list",
+            editorParams:{
+                values:get_livros(),
+                autocomplete:true,
+                filterRemote:false,
+                freetext:true,
+                allowEmpty:true,
+                listOnEmpty:false,
+                placeholderEmpty: "",
+                filterFunc: function(term, label, value, item){
+                    return label.toLowerCase().startsWith(term.toLowerCase());
+                }
+            },
+            cellEdited: salvar_emprestimo
+        },
 	 	{title:"Data de Devolução", field:"data_dev_prev", hozAlign:"center", headerWordWrap:true, headerSort: false},
 	],
 });
