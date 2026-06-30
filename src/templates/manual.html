@@ -1,0 +1,113 @@
+{% extends "layout/main.html" %}
+
+{% block title %}Biblioteca CNEC{% endblock %}
+
+{% block content %}
+<div class="flex justify-center w-full min-h-full items-start py-12 px-4">
+
+    <div class="relative w-full md:max-w-3xl sm:max-w-lg max-w-sm">
+
+        <!-- Quadrado amarelo -->
+        <div class="absolute -right-7 top-6 md:-right-11 md:top-3 w-40 h-40 md:w-52 md:h-52 bg-cnec-amarelo z-0 rounded-sm"></div>
+
+        <!-- Quadrado azul -->
+        <div class="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 w-40 h-40 md:w-52 md:h-52 bg-cnec-azul z-0 rounded-sm"></div>
+
+        <!-- Conteúdo -->
+        <div class="relative z-10">
+
+            <div class="pt-2 px-0 md:px-3 text-xl text-cnec-azul-escuro border-b-4 border-cnec-amarelo mb-4 font-semibold w-max">
+                Manual de Instruções
+            </div>
+
+            <!-- Manual -->
+            <div class="font-poppins bg-cnec-azul-escuro shadow-xl p-6 md:p-8">
+                <div class="space-y-4 md:space-y-5 text-cnec-azul-escuro">
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Consultar Alunos e Turmas
+                        </h2>
+                        <p class="text-base md:text-lg pl-3">
+                            Ao abrir o sistema, selecione uma das turmas listadas na tela principal.
+                        </p>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Tabelas de Empréstimos
+                        </h2>
+                        <ul class="pl-3">
+                            <li><span class="font-semibold">Empréstimos Atuais:</span> empréstimos da semana em curso.</li>
+                            <li><span class="font-semibold">Empréstimos Anteriores:</span> registros de semanas anteriores.</li>
+                        </ul>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Registrar Empréstimo
+                        </h2>
+                        <ol class="list-decimal list-inside space-y-1 pl-3 text-base md:text-lg">
+                            <li>Abra uma turma.</li>
+                            <li>Clique na célula do livro do respectivo aluno.</li>
+                            <li>Selecione o livro ou escreva o título de um novo livro.</li>
+                        </ol>
+                        <div class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">
+                            <p>A data de devolução será salva após ser designado um novo livro ao aluno.</p>
+                            <p>O salvamento de empréstimos é feito automaticamente.</p>
+                        </div>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Avançar Semana
+                        </h2>
+                        <p class="text-base md:text-lg pl-3">
+                            Clique no botão <span class="font-semibold">"Avançar Semana"</span> para iniciar uma nova semana de empréstimos.
+                        </p>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Passagem de Ano Escolar
+                        </h2>
+                        <ul class="list-disc list-inside space-y-1 pl-3 text-base md:text-lg">
+                            <li>Use <span class="font-semibold">"Avançar Ano Escolar"</span> no fim do ano letivo.</li>
+                            <li>Todos os alunos avançam de série automaticamente.</li>
+                            <li>Alunos do 9º ano são removidos da turma, mas permanecem no histórico.</li>
+                        </ul>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Histórico
+                        </h2>
+                        <ul class="list-disc list-inside space-y-1 pl-3 text-base md:text-lg">
+                            <li>Na aba histórico estão todos os registros de empréstimos.</li>
+                            <li>Para alterar a situação de um empréstimo, clique na célula.</li>
+                        </ul>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Outras Informações
+                        </h2>
+                        <div class="pl-3 space-y-2 text-base md:text-lg ">
+                            <p>Caso identificado algum problema ou dúvida, por favor entre em contato pelo telefone
+                                <span class="font-semibold">(54) 9351-3835</span>.
+                            </p>
+                            <p class="text-sm md:text-base text-cnec-azul-escuro/80 pt-2">
+                                Projeto desenvolvido por Beatrice Onzi Cappeletti, como projeto final do Curso Técnico
+                                em Informática Integrado ao Ensino Médio - Instituto Federal, Campus Farroupilha.
+                            </p>
+                        </div>
+                        <!-- logo do if? -->
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
