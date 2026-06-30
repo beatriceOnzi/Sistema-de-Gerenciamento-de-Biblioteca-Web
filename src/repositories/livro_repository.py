@@ -7,7 +7,6 @@ class LivroRepository:
         return livros
     
     def existe(self, titulo):
-        print(Livro.query.filter_by(nome=titulo).first())
         return Livro.query.filter_by(nome=titulo).first() is not None
 
     def criar_livro(self, titulo):

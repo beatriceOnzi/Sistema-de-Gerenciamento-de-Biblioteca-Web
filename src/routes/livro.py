@@ -7,14 +7,12 @@ bp = Blueprint("cadastro_livros", __name__, url_prefix="/cadastro/livros")
 def carregar_cadastro_livros():
     titulo = request.args.get('titulo', '')
     livros = get_livros()
-    print(livros)
     return render_template('cadastro.html', current_page = 2, grupo = "livros", livros = livros, titulo=titulo)
 
 @bp.get("/get_livros")
 def livros():
     livros = get_livros()
     valores = [l.nome for l in livros]
-    print(valores)
     return jsonify(valores)
 
 @bp.route('/novo', methods=['POST'])

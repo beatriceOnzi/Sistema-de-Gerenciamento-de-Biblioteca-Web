@@ -26,7 +26,6 @@ class EmprestimosRepository:
             Emprestimo.turma == turma,
             Emprestimo.semana == semana_record
         ).order_by(Aluno.nome).first()
-        print(emprestimo)
         return emprestimo
     
     def save_title(self, id, livro_id):

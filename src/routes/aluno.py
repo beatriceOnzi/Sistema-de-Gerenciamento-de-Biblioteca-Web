@@ -18,7 +18,6 @@ def cadastrar_novo_aluno():
         'nome': request.form.get('nome_aluno'),
         'turma': (request.form.get('turma')).strip()
     }
-    print("dados: ", dados)
 
     erros = validar_aluno(dados)
     if (erros):
