@@ -26,3 +26,9 @@ class AlunoRepository:
     
     def existe_aluno(self, id):
         return Aluno.query.filter_by(id=id).first() is not None
+
+    def existe_by_name_turma(self, nome, aluno):
+        return Aluno.query.filter(
+            Aluno.nome == nome,
+            Aluno.turma == aluno,
+        ).first() is not None

@@ -5,9 +5,13 @@ class LivroRepository:
     def get_livros(self):
         livros = Livro.query.order_by(Livro.nome).all()
         return livros
+    
+    def existe(self, titulo):
+        print(Livro.query.filter_by(nome=titulo).first())
+        return Livro.query.filter_by(nome=titulo).first() is not None
 
     def criar_livro(self, titulo):
-        titulo.strip()
+        titulo = titulo.strip()
         novo_livro = Livro(nome=titulo)
         db.session.add(novo_livro)
         db.session.commit()

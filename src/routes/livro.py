@@ -20,6 +20,7 @@ def livros():
 @bp.route('/novo', methods=['POST'])
 def cadastrar_novo_livro():
     titulo = request.form.get('titulo')
+    titulo = titulo.strip()
 
     erros = validar_livro(titulo)
     if (erros):

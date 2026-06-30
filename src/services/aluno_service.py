@@ -35,11 +35,11 @@ def validar_aluno(dados):
     turma_existe = turmas_repository.existe(dados.get('turma'))
     if not turma_existe:
         erros.append("Turma inválida")
+
+    if aluno_repository.existe_by_name_turma(dados.get('nome'), dados.get('turma')):
+        erros.append("Este aluno já está cadastrado")
     
     return erros
 
 def existe_aluno(id):
     return aluno_repository.existe_aluno(id)
-
-# quando nao é validado, a pagina recarrega, e o nome/ turma que estava escrito, some. Tem como solucionar isso
-# utilizando javascript, ou só passando na rota o valor que estava lá.

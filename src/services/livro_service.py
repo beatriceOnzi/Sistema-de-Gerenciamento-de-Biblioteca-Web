@@ -12,6 +12,9 @@ def criar_livro(titulo):
 def deletar_livro(id):
     livro_repository.deletar_livro(id)
 
+def existe(titulo):
+    return livro_repository.existe(titulo)
+
 def validar_livro(titulo):
     erros = []
 
@@ -20,5 +23,8 @@ def validar_livro(titulo):
     
     if len(titulo) <= 0:
         erros.append("Título inválido")
+    
+    if existe(titulo):
+        erros.append("Este livro já está cadastrado")
     
     return erros

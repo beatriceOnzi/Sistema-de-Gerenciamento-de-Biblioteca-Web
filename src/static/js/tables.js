@@ -71,7 +71,8 @@ var tabela_atual = new Tabulator("#tabela_atual", {
 });
 
 async function salvar_emprestimo(cell){
-    const title = cell.getValue();
+    let title = cell.getValue();
+    title = title.trim()
     const id = cell.getRow().getData().id;
     const aluno_id = cell.getRow().getData().aluno_id;
     const aluno = cell.getRow().getData().aluno;
