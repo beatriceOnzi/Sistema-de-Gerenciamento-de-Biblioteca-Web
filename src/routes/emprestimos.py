@@ -27,7 +27,7 @@ def save_title(turma):
     titulo = data.get('title')
 
     emprestimos_service.save_title(id, titulo)
-    return jsonify("funciona")
+    return jsonify("ok")
 
 @bp.post('/<turma>/set_data_devolucao')
 def set_data_devolucao(turma):
@@ -41,6 +41,7 @@ def set_data_devolucao(turma):
 
 @bp.post('/<turma>/avancar_semana')
 def avancar_semana(turma):
+    emprestimos_service.avancar_semana(turma)
     historico_service.salvar_emprestimos(turma)
     emprestimos_service.criar_semana_emprestimos(turma)
     return redirect(url_for('turma.carregar_turma', turma=turma))

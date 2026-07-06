@@ -6,38 +6,32 @@ def get_alunos():
     return alunos
 
 def add_emprestimo():
-    emprestimo = Emprestimo.query.filter_by(id=5).first()
-    date_string = "2026-06-25"
-    valid_date = datetime.strptime(date_string, "%Y-%m-%d").date()
-    emprestimo.data_devolucao = valid_date
-
-    # db.session.add(emprestimo)
-    # emprestimo2 = Emprestimo(
-    #     aluno_id=2,
-    #     turma=2,
-    #     semana=1
-    # )
-    # db.session.add(emprestimo2)
-    # emprestimo3 = Emprestimo(
-    #     aluno_id=3,
-    #     turma=2,
-    #     semana=1
-    # )
-    # db.session.add(emprestimo3)
+    emprestimo2 = Emprestimo(
+        aluno_id=2,
+        turma=2,
+        semana=1
+    )
+    db.session.add(emprestimo2)
+    emprestimo3 = Emprestimo(
+        aluno_id=3,
+        turma=2,
+        semana=1
+    )
+    db.session.add(emprestimo3)
     db.session.commit()
 
 def add_alunos():
-    novo_aluno = Aluno(nome="Carlo", turma=1)
+    novo_aluno = Aluno(nome="Carlo", turma=3)
     db.session.add(novo_aluno)
-    novo_aluno = Aluno(nome="Amanada", turma=1)
+    novo_aluno = Aluno(nome="Amanada", turma=3)
     db.session.add(novo_aluno)
-    novo_aluno = Aluno(nome="Ana", turma=1)
+    novo_aluno = Aluno(nome="Ana", turma=3)
     db.session.add(novo_aluno)
-    novo_aluno = Aluno(nome="Rafaela", turma=1)
+    novo_aluno = Aluno(nome="Rafaela", turma=3)
     db.session.add(novo_aluno)
-    novo_aluno = Aluno(nome="Bruna", turma=1)
+    novo_aluno = Aluno(nome="Murilo", turma=3)
     db.session.add(novo_aluno)
-    novo_aluno = Aluno(nome="Sofia", turma=1)
+    novo_aluno = Aluno(nome="Beatrice", turma=3)
 
     db.session.commit()
     print("aluno adicionados")
