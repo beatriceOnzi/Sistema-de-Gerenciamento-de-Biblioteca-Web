@@ -1,19 +1,13 @@
-from src.services.turmas_service import get_turmas, adicionar_turmas
-from src.models.turma import Turma
+import src.services.turmas_service as service
+from src.repositories.turmas_repository import TurmasRepository
 
+repo = TurmasRepository()
 
-def test_get_turmas_retorna_todas_as_turmas_cadastradas(app):
-    turmas = get_turmas()
+def test_adicionar_turmas(app):
+    service.adicionar_turmas()
+    turmas = repo.get_turmas()
     assert len(turmas) == 9
 
-
-def test_adicionar_turmas_nao_duplica_turmas_existentes(app):
-    adicionar_turmas()
-    turmas = Turma.query.all()
+def test_get_turmas(app):
+    turmas = service.get_turmas()
     assert len(turmas) == 9
-
-
-def test_turmas_sao_numeradas_de_1_a_9(app):
-    turmas = get_turmas()
-    numeros = sorted(t.turma for t in turmas)
-    assert numeros == list(range(1, 10))

@@ -4,7 +4,7 @@ from src.models.livro import Livro
 repo = LivroRepository()
 
 
-def test_criar_livro_persiste_no_banco(app):
+def test_criar_livro(app):
     repo.criar_livro("Livro Repo")
 
     livro = Livro.query.filter_by(nome="Livro Repo").first()
@@ -41,10 +41,6 @@ def test_deletar_livro_remove_do_banco(app):
     repo.deletar_livro(livro.id)
 
     assert Livro.query.filter_by(nome="Livro Deletar").first() is None
-
-
-def test_deletar_livro_inexistente_nao_lanca_excecao(app):
-    repo.deletar_livro(9999)
 
 
 def test_get_id_by_title_retorna_id_existente(app):

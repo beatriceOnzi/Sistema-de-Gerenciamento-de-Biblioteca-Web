@@ -29,5 +29,10 @@ class LivroRepository:
             livro = Livro.query.filter_by(nome=titulo).first()
 
         return livro.id
+    
+    def get_livro_by_title(self, titulo):
+        livro = Livro.query.filter_by(nome=titulo).first()
+        return livro
+
 
         

@@ -15,6 +15,12 @@ def deletar_livro(id):
 def existe(titulo):
     return livro_repository.existe(titulo)
 
+def get_livro_by_title(title):
+    return livro_repository.get_livro_by_title(title)
+
+def get_id_by_title(title):
+    return livro_repository.get_id_by_title(title)
+
 def validar_livro(titulo):
     erros = []
 

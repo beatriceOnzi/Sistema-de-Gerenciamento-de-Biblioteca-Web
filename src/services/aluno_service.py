@@ -22,8 +22,8 @@ def deletar_aluno(id):
 def validar_aluno(dados):
     erros = []
 
-    if len(dados.get('nome')) >= 120:
-        erros.append("Digite um nome com menos de 120 caracteres")
+    if len(dados.get('nome')) >= 100:
+        erros.append("Digite um nome com menos de 100 caracteres")
     
     if len(dados.get('nome')) < 5:
         erros.append("Digite o nome completo do aluno")

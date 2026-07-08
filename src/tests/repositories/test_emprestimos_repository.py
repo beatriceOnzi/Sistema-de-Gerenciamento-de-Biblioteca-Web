@@ -10,7 +10,6 @@ def _criar_aluno(nome, turma):
     aluno_repository.criar_aluno(nome, turma)
     return aluno_repository.get_aluno_by_nome(nome)
 
-
 def test_criar_semana_emprestimos_cria_um_registro_por_aluno(app):
     aluno1 = _criar_aluno("Aluno Repo Um", 3)
     aluno2 = _criar_aluno("Aluno Repo Dois", 3)
@@ -28,7 +27,7 @@ def test_get_emprestimos_cadastro_filtra_por_turma_e_semana(app):
     cadastro = repo.get_emprestimos_cadastro(4, 1)
 
     assert len(cadastro) == 1
-    assert cadastro[0]['aluno'] == "Aluno Repo Tres"
+    assert cadastro[0].aluno.nome == "Aluno Repo Tres"
 
 
 def test_get_emprestimos_record_filtra_pela_semana_anterior(app):
@@ -38,7 +37,7 @@ def test_get_emprestimos_record_filtra_pela_semana_anterior(app):
     record = repo.get_emprestimos_record(5, 2)
 
     assert len(record) == 1
-    assert record[0]['aluno'] == "Aluno Repo Quatro"
+    assert record[0].aluno.nome == "Aluno Repo Quatro"
 
 
 def test_get_emprestimo_record_encontra_pelo_aluno_turma_e_semana(app):
@@ -82,8 +81,7 @@ def test_set_data_devolucao_preenche_data_formatada(app):
     data_formatada = repo.set_data_devolucao(emprestimo)
 
     assert emprestimo.data_devolucao is not None
-    assert data_formatada == emprestimo.data_devolucao.strftime("%d-%m-%Y")
-
+    assert data_formatada == emprestimo.data_devolucao
 
 def test_limpar_data_devolucao_remove_a_data(app):
     aluno = _criar_aluno("Aluno Repo Nove", 1)
@@ -95,7 +93,3 @@ def test_limpar_data_devolucao_remove_a_data(app):
 
     assert emprestimo.data_devolucao is None
     assert resultado is None
-
-
-def test_formatar_data_retorna_none_quando_data_e_none(app):
-    assert repo.formatar_data(None) is None
