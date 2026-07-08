@@ -1,73 +1,32 @@
-console.log("funciona")
-const data = [
-    {
-        data_empre: "03-02-2026",
-        aluno: "Ana Souza",
-        livro: "Dom Casmurro",
-        turma: "8º Ano",
-        data_dev_real: "10-02-2026"
-    },
-    {
-        data_empre: "05-02-2026",
-        aluno: "Carlos Oliveira",
-        livro: "O Pequeno Príncipe",
-        turma: "7º Ano",
-        data_dev_real: "Pendente"
-    },
-    {
-        data_empre: "06-02-2026",
-        aluno: "Mariana Lima",
-        livro: "Harry Potter e a Pedra Filosofal",
-        turma: "6º Ano",
-        data_dev_real: "13-02-2026"
-    },
-    {
-        data_empre: "08-02-2026",
-        aluno: "João Pedro",
-        livro: "Capitães da Areia",
-        turma: "9º Ano",
-        data_dev_real: "Pendente"
-    },
-    {
-        data_empre: "09-02-2026",
-        aluno: "Beatriz Fernandes",
-        livro: "A Bolsa Amarela",
-        turma: "5º Ano",
-        data_dev_real: "16-02-2026"
-    },
-    {
-        data_empre: "10-02-2026",
-        aluno: "Lucas Martins",
-        livro: "Percy Jackson e o Ladrão de Raios",
-        turma: "8º Ano",
-        data_dev_real: "17-02-2026"
-    },
-    {
-        data_empre: "11-02-2026",
-        aluno: "Fernanda Rocha",
-        livro: "O Menino Maluquinho",
-        turma: "4º Ano",
-        data_dev_real: "Pendente"
-    },
-    {
-        data_empre: "12-02-2026",
-        aluno: "Gabriel Costa",
-        livro: "Diário de um Banana",
-        turma: "6º Ano",
-        data_dev_real: "19-02-2026"
-    }
-];
+const historico_data = await get_historico_data()
 
-var tabela_registro = new Tabulator("#tabela_historico", {
+const table_data_historico = historico_data.map(emp => ({
+    id: emp.id,
+    data_emprestimo: emp.data_emprestimo,
+    aluno: emp.aluno,
+    livro: emp.livro,
+    turma: emp.turma,
+    data_devolucao: emp.data_devolucao
+}));
+
+var historico = new Tabulator("#tabela_historico", {
     height: "100%",
-    data: data,
+    data: table_data_historico,
     layout: "fitColumns",
     columns: [
-        { title: "Data de Empréstimo", field: "data_empre", hozAlign: "center", headerWordWrap: true, headerSort: false },
+        { title: "Data de Empréstimo", field: "data_emprestimo", hozAlign: "center", headerWordWrap: true, headerSort: false },
         { title: "Aluno", field: "aluno", hozAlign: "left", formatter: "textarea", headerSort: false },
         { title: "Livro", field: "livro", hozAlign: "left", formatter: "textarea", headerSort: false },
-        { title: "Turma", field: "turma", hozAlign: "left", headerSort: false },
-        { title: "Data de Devolução", field: "data_dev_real", hozAlign: "center", headerWordWrap: true, headerSort: false, formatter: devolucao_pendente_style },
+        { title: "Turma", field: "turma", hozAlign: "center", headerSort: false },
+        { 
+            title: "Data de Devolução", 
+            field: "data_devolucao", 
+            hozAlign: "center", 
+            headerWordWrap: true, 
+            headerSort: false, 
+            formatter: devolucao_pendente_style,
+            cellClick: alternar_data_devolucao,
+        },
     ],
 });
 
@@ -78,4 +37,43 @@ function devolucao_pendente_style(cell) {
             cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
     }
     return value ?? "Pendente";
+}
+
+async function get_historico_data() {
+    const response = await fetch("./get_historico_data");
+    const data = await response.json()
+    return data
+}
+
+async function alternar_data_devolucao(e, cell) {
+    const id = cell.getRow().getData().id;
+    const conteudo_data_devolucao = await atualizar_data_devolucao(id);
+
+    const row = cell.getRow()
+
+    if (row) {
+        row.update({
+            data_devolucao: conteudo_data_devolucao
+        });
+    }
+
+    row.reformat();
+}
+
+async function atualizar_data_devolucao(id){
+    const response = await fetch(`./atualizar_data_devolucao`, {
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            id
+        })
+    });
+
+    const data = await response.json()
+
+    return data
 }

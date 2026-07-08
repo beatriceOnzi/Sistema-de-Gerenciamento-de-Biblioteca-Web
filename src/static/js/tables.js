@@ -94,10 +94,14 @@ async function salvar_emprestimo(cell){
 }
 
 function devolucao_pendente_style(cell) {
-    var value = cell.getValue();
+    let value = cell.getValue();
+    let livro = cell.getRow().getData().livro;
+    let pendente;
 
-    if (value == null || value == "" || value == "null") {
-            cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
+    if (!value && livro) {
+        cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
+        pendente = "Pendente";
     }
-    return value ?? "Pendente";
+
+    return !livro ? pendente : value
 }
