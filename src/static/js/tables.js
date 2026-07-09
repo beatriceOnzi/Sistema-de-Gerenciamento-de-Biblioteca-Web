@@ -79,7 +79,6 @@ async function salvar_emprestimo(cell){
 
     await save_title(id, title);
     const data_devolucao = await set_data_devolucao(title, aluno);
-    console.log(data_devolucao);
 
     const row = tabela_registro.getRows().find(
         row => row.getData().aluno_id === aluno_id
@@ -94,14 +93,13 @@ async function salvar_emprestimo(cell){
 }
 
 function devolucao_pendente_style(cell) {
-    let value = cell.getValue();
-    let livro = cell.getRow().getData().livro;
-    let pendente;
+    const date = cell.getValue();
+    const { livro } = cell.getRow().getData();
 
-    if (!value && livro) {
-        cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
-        pendente = "Pendente";
-    }
+    if (!livro) return null;
 
-    return !livro ? pendente : value
+    if (date) return date;
+
+    cell.getElement().style.cssText += "background-color: #EB2D2DBF; color: #222";
+    return "Pendente";
 }
