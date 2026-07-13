@@ -36,6 +36,7 @@ Sistema desenvolvido para auxiliar no gerenciamento de bibliotecas escolares, pe
 bibliotecaApi/
 │
 ├── models/              # Modelos do banco de dados
+├── repositories/        # Manipulação dos dados
 ├── routes/              # Rotas
 ├── services/            # Regras de negócio
 ├── templates/           # Páginas HTML
