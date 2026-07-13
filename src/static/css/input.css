@@ -19,7 +19,7 @@
 }
 
 .sucesso {
-  @apply bg-cnec-azul-claro
+  @apply bg-lime-500
 }
 
 ::-webkit-scrollbar {

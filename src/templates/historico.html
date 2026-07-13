@@ -7,11 +7,57 @@
 <div class="flex items-center justify-center w-full h-max mt-6 lg:m-10">
 
     <div class="flex flex-col bg-cnec-azul w-11/12 max-w-6xl">
-        <div class="flex justify-between items-center px-6 py-3 font-semibold border-b-4 border-cnec-amarelo">
-            <div class="text-cnec-branco text-xl">
-                Pesquisar
+        <div class="flex justify-between items-center px-6 py-3 mr-12 text-cnec-branco font-semibold border-b-4 border-cnec-amarelo">
+
+            <div class="text-lg md:text-2xl font-bold border-l-4 border-cnec-amarelo pl-3 h-max mr-10">
+                Pesquisa
+            </div>
+
+            <div class="flex flex-wrap items-end gap-x-6">
+
+                <div class="flex flex-col gap-1">
+                    <label for="alunos_pesquisa" class="text-base font-medium text-cnec-branco/80">
+                        Nome do Aluno
+                    </label>
+                    <input
+                        id="alunos_pesquisa"
+                        name="aluno"
+                        type="text"
+                        placeholder="Digite o nome..."
+                        class="px-3 py-1.5 rounded bg-cnec-branco text-cnec-azul-escuro placeholder-cnec-azul-escuro/50 outline-none ring-2 ring-transparent focus:ring-cnec-amarelo transition-all w-56"
+                    >
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="livros_pesquisa" class="text-base font-medium text-cnec-branco/80">
+                        Título do Livro
+                    </label>
+                    <input
+                        id="livros_pesquisa"
+                        name="livro"
+                        type="text"
+                        placeholder="Digite o título..."
+                        class="px-3 py-1.5 rounded bg-cnec-branco text-cnec-azul-escuro placeholder-cnec-azul-escuro/50 outline-none ring-2 ring-transparent focus:ring-cnec-amarelo transition-all w-56"
+                    >
+                </div>
+
+                <div class="flex flex-col gap-1 ml-24 pb-1">
+                    <label for="filtro_pendencia" class="text-base font-medium text-cnec-branco/80">
+                        Status
+                    </label>
+                    <select
+                        id="filtro_pendencia"
+                        class="px-3 py-1.5 rounded bg-cnec-branco text-cnec-azul-escuro outline-none ring-2 ring-transparent focus:ring-cnec-amarelo transition-all cursor-pointer w-max"
+                    >
+                        <option value="">Todos</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="devolvido">Devolvido</option>
+                    </select>
+                </div>
+
             </div>
         </div>
+
         <div class="p-4 justify-center w-full max-w-full">
             <div class="p-4 h-96 w-full max-w-full bg-cnec-azul-escuro">
                 <div id="tabela_historico" class="text-[9px] sm:text-md md:text-lg lg:w-full"></div>

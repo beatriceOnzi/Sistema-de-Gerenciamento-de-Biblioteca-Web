@@ -39,6 +39,43 @@ function devolucao_pendente_style(cell) {
     return value ?? "Pendente";
 }
 
+const input_aluno = document.getElementById("alunos_pesquisa");
+const input_livro = document.getElementById("livros_pesquisa");
+const select_pendencia = document.getElementById("filtro_pendencia");
+
+function aplicar_filtros() {
+    const filtros = [];
+
+    if (input_aluno.value.trim() !== "") {
+        filtros.push({ field: "aluno", type: "like", value: input_aluno.value.trim() });
+    }
+
+    if (input_livro.value.trim() !== "") {
+        filtros.push({ field: "livro", type: "like", value: input_livro.value.trim() });
+    }
+
+    if (select_pendencia.value === "pendente") {
+        filtros.push({ field: "data_devolucao", type: "=", value: null });
+    } else if (select_pendencia.value === "devolvido") {
+        filtros.push({ field: "data_devolucao", type: "!=", value: null });
+    }
+
+    historico.setFilter(filtros);
+}
+
+
+function debounce(fn, delay = 250) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+    };
+}
+
+input_aluno.addEventListener("input", debounce(aplicar_filtros));
+input_livro.addEventListener("input", debounce(aplicar_filtros));
+select_pendencia.addEventListener("change", aplicar_filtros);
+
 async function get_historico_data() {
     const response = await fetch("./get_historico_data");
     const data = await response.json()
