@@ -32,3 +32,13 @@ class AlunoRepository:
             Aluno.nome == nome,
             Aluno.turma == aluno,
         ).first() is not None
+    
+    def avancar_turmas(self):
+        alunos = self.get_alunos()
+        for aluno in alunos:
+            if aluno.turma == 9:
+                aluno.turma = None
+            else:
+                aluno.turma = aluno.turma + 1
+        db.session.commit()
+        return "Ano avaçado com Sucesso"

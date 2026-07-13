@@ -1,0 +1,75 @@
+{% extends "layout/main.html" %}
+
+{% block title %}Biblioteca CNEC{% endblock %}
+
+{% block content %}
+<div class="flex justify-center w-full min-h-full items-start py-12 px-4 cursor-default">
+
+    <div class="relative w-full md:max-w-3xl sm:max-w-lg max-w-sm lg:max-w-4xl">
+
+        <!-- Quadrado amarelo -->
+        <div class="absolute -right-7 top-6 md:-right-11 md:top-3 w-40 h-40 md:w-52 md:h-52 bg-cnec-amarelo z-0 rounded-sm"></div>
+
+        <!-- Quadrado azul -->
+        <div class="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 w-40 h-40 md:w-52 md:h-52 bg-cnec-azul z-0 rounded-sm"></div>
+
+        <div class="relative z-10">
+
+            <div class="pt-2 px-0 md:px-3 text-xl text-cnec-azul-escuro border-b-4 border-cnec-amarelo mb-4 font-semibold w-max">
+                Passagem de Ano
+            </div>
+
+            <div class="font-poppins bg-cnec-azul-escuro shadow-xl p-6 md:p-8">
+                <div class="space-y-4 md:space-y-5 text-cnec-azul-escuro">
+                    <div class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-5 mt-3">
+                            Avançar as Turmas?
+                        </h2>
+                        <p class="font-bold md:text-lg pl-3">
+                            Avançar o ano escolar passará todos os alunos para a turma seguinte
+                        </p>
+                        <p class="font-semibold md:text-lg pl-3 text-opacity-15 text-cnec-azul-escuro/75">
+                            Alunos cadastrados no 1º Ano irão serão movidos para o 2º Ano
+                        </p>
+                        <div class="flex justify-center items-center mt-4">
+                            <div id="avancarAno" class="cursor-pointer bg-cnec-amarelo text-cnec-azul-escuro font-bold text-xl py-2 px-4 my-3 rounded transition hover:bg-cnec-amarelo-shadow"> 
+                                Avançar Ano Escolar
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Confirmação -->
+<div id="confirmacao" class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-200">
+  <div id="box" class="bg-white rounded-lg shadow-2xl p-6 md:p-7 max-w-sm w-[90%] scale-95 transition-transform duration-200">
+    <h3 id="titulo" class="text-lg font-bold text-cnec-azul-escuro border-l-4 border-cnec-amarelo pl-3 mb-3">
+    </h3>
+    <p id="mensagem" class="text-cnec-azul-escuro/80 mb-6">
+    </p>
+    <div class="flex justify-end gap-3">
+      <button id="cancelar_btn" type="button"
+        class="px-4 py-2 rounded font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition">
+        Cancelar
+      </button>
+      <button id="confirmar_btn" type="button"
+        class="px-4 py-2 rounded font-bold bg-cnec-amarelo text-cnec-azul-escuro hover:bg-cnec-amarelo-shadow transition disabled:opacity-50 disabled:cursor-not-allowed">
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mensagem -->
+<div id="retorno" class="fixed top-5 left-1/2 -translate-x-1/2 -translate-y-5 font-semibold px-6 py-3 rounded-lg shadow-lg font-poppins text-cnec-azul-escuro z-[9999] opacity-0 pointer-events-none transition-all duration-300 bg-cnec-amarelo">
+</div>
+
+<script src="../../static/js/passagemAno.js" type="module"></script>
+
+{% endblock %}

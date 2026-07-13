@@ -61,3 +61,15 @@ def test_existe_by_name_turma(app):
 
     assert repo.existe_by_name_turma("Aluno Duplicado", 2) is True
     assert repo.existe_by_name_turma("Outro Aluno", 3) is False
+
+def test_avancar_ano(app):
+    repo.criar_aluno("Aluno 1", 1)
+    repo.criar_aluno("Aluno 2", 2)
+
+    repo.avancar_turmas()
+
+    aluno1 = Aluno.query.filter_by(nome="Aluno 1").first()
+    aluno2 = Aluno.query.filter_by(nome="Aluno 2").first()
+
+    assert aluno1.turma == 2
+    assert aluno2.turma == 3

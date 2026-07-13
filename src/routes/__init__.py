@@ -4,6 +4,7 @@ from .turmas import bp as turmas_bp
 from .emprestimos import bp as emprestimo_bp
 from .historico import bp as historico_pb
 from .manual import bp as manual_bp
+from .passagemAno import bp as passagemAno_bp
 
 
 def registrar_routes(app):
@@ -13,3 +14,4 @@ def registrar_routes(app):
     app.register_blueprint(emprestimo_bp)
     app.register_blueprint(historico_pb)
     app.register_blueprint(manual_bp)
+    app.register_blueprint(passagemAno_bp)

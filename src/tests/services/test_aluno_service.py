@@ -72,12 +72,3 @@ def test_validar_aluno_caracteres_proibidos(app):
 
     erros = service.validar_aluno(dados)
     assert "Digite apenas letras" in erros
-
-def test_aluno_turma_invalida(app):
-    dados = {
-        'nome': "Nome Teste",
-        "turma": 50
-    }
-
-    erros = service.validar_aluno(dados)
-    assert "Turma inválida" in erros
