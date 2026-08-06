@@ -9,6 +9,7 @@ const table_data_historico = historico_data.map(emp => ({
     data_devolucao: emp.data_devolucao
 }));
 
+
 var historico = new Tabulator("#tabela_historico", {
     height: "100%",
     data: table_data_historico,
