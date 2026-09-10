@@ -2,7 +2,7 @@ from src.models import db, Turma
 
 class TurmasRepository:
     def get_turmas(self):
-        return Turma.query.all()
+        return Turma.query.order_by(Turma.turma_formatada).all()
         
     def existe(self, turma_id):
         return Turma.query.filter_by(turma=turma_id).first() is not None

@@ -17,7 +17,7 @@ class Emprestimo(db.Model):
     data_devolucao = db.Column(db.Date)
 
     turma = db.Column(db.Integer, db.ForeignKey("turma.turma"))
-    semana = db.Column(db.Integer, db.ForeignKey("turma.semana_atual"))
+    semana = db.Column(db.Integer)
     
     aluno = db.relationship("Aluno", backref="emprestimos")
     livro = db.relationship("Livro", backref="emprestimos")

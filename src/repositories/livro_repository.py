@@ -3,8 +3,7 @@ from src.models import db, Livro
 class LivroRepository:
     
     def get_livros(self):
-        livros = Livro.query.order_by(Livro.nome).all()
-        return livros
+        return Livro.query.order_by(Livro.nome).all()
     
     def existe(self, titulo):
         return Livro.query.filter_by(nome=titulo).first() is not None
