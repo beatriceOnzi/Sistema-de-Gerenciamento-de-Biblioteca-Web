@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 from config import Config
 from src.models import db
 from src.routes import registrar_routes
@@ -14,6 +15,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
+    Migrate(app, db)          # <-- adicionar essa linha
 
     registrar_routes(app)
 

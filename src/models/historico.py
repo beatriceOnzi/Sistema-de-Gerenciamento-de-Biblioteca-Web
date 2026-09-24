@@ -12,4 +12,4 @@ class Historico(db.Model):
     data_emprestimo = db.Column(db.Date)
     data_devolucao = db.Column(db.Date)
 
-    turma = db.Column(db.Integer, db.ForeignKey("turma.turma"))
+    turma = db.Column(db.String(10))

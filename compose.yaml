@@ -19,6 +19,12 @@ services:
       - db
     ports:
       - "5000:5000"
+      
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./src
+          target: /app/src
 
 volumes:
   pgdata:

@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "python app.py",
+    "dev": "docker compose watch",
     "watch": "npx tailwindcss -i src/static/css/input.css -o src/static/css/output.css --watch",
     "build": "npx tailwindcss -i src/static/css/input.css -o src/static/css/index.css --minify"
   },

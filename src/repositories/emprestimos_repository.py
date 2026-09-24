@@ -51,6 +51,7 @@ class EmprestimosRepository:
         return None
 
     def criar_semana_emprestimos(self, turma, alunos, semana):
+        turma = int(turma)
         for aluno in alunos:
             novo_emprestimo = Emprestimo(
                 aluno_id=aluno.id,
