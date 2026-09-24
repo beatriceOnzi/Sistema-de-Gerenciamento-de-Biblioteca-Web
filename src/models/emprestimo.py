@@ -19,5 +19,5 @@ class Emprestimo(db.Model):
     turma = db.Column(db.Integer, db.ForeignKey("turma.turma"))
     semana = db.Column(db.Integer)
     
-    aluno = db.relationship("Aluno", backref="emprestimos")
-    livro = db.relationship("Livro", backref="emprestimos")
+    aluno = db.relationship("Aluno")
+    livro = db.relationship("Livro")
