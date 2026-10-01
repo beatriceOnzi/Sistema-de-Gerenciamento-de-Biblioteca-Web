@@ -15,7 +15,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
-    Migrate(app, db)          # <-- adicionar essa linha
+    Migrate(app, db)
 
     registrar_routes(app)
 
@@ -24,7 +24,7 @@ def create_app(config_class=Config):
 
     return app
 
-app = create_app()
 
 if __name__ == "__main__":
+    app = create_app()
     app.run(host="0.0.0.0")

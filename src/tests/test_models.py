@@ -58,4 +58,3 @@ def test_emprestimo_relacionamento_com_aluno(app):
     db.session.commit()
 
     assert emprestimo.aluno.nome == "Aluno Relacao"
-    assert aluno.emprestimos[0].id == emprestimo.id

@@ -1,12 +1,11 @@
 const historico_data = await get_historico_data()
 
-// mudar aqui !!!!!!!!!!!!!!!!!!!!!!!
 const table_data_historico = historico_data.map(emp => ({
     id: emp.id,
     data_emprestimo: emp.data_emprestimo,
     aluno: emp.aluno,
     livro: emp.livro,
-    turma: emp.turma,
+    turma: formatar_turma(emp.turma),
     data_devolucao: emp.data_devolucao
 }));
 
@@ -64,6 +63,7 @@ function aplicar_filtros() {
     historico.setFilter(filtros);
 }
 
+function formatar_turma(turma_int){ return `${turma_int}º Ano` }
 
 function debounce(fn, delay = 250) {
     let timer;
