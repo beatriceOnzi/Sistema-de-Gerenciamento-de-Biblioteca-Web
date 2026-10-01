@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-import src.services.historico_service as historico_service
+import src.services.emprestimos_service as emprestimo_service
 
 bp = Blueprint("historico", __name__, url_prefix="/historico")
 
@@ -9,7 +9,7 @@ def index():
 
 @bp.route('/get_historico_data', methods=['GET'])
 def get_historico_data():
-    all_emprestimos = historico_service.get_historico()
+    all_emprestimos = emprestimo_service.get_historico_emprestimos()
     return jsonify(all_emprestimos)
 
 @bp.post('/atualizar_data_devolucao')
@@ -18,5 +18,5 @@ def alternar_data_devolucao():
 
     id = data.get('id')
 
-    data_devolucao = historico_service.set_data_devolucao(id)
+    data_devolucao = emprestimo_service.atualizar_data_devolucao_historico(id)
     return jsonify(data_devolucao)

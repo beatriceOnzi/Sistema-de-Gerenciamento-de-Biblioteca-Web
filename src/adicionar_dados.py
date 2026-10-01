@@ -47,3 +47,9 @@ def add_livros():
 
     db.session.commit()
     print("aluno adicionados")
+
+def delete_emprestimos():
+    livros = Emprestimo.query.filter_by(aluno_id=None)
+    for livro in livros:
+        db.session.delete(livro)
+        db.session.commit()

@@ -29,6 +29,10 @@ def get_emprestimos_cadastro(turma):
     emprestimos = emprestimos_repository.get_emprestimos_cadastro(turma, semana_atual)
     return [serialize_emprestimo(emp) for emp in emprestimos]
 
+def get_historico_emprestimos():
+    all_emprestimos = emprestimos_repository.get_historico()
+    return [serialize_historico(emp) for emp in all_emprestimos]
+
 def save_title(id, titulo):
     if titulo == "" or titulo == None:
         limpar_livro_emprestimo(id)
@@ -48,6 +52,17 @@ def set_data_devolucao(titulo, aluno, turma):
         data_devolucao = formatar_data(emprestimos_repository.set_data_devolucao(emprestimo_record))
     
     return data_devolucao
+
+def atualizar_data_devolucao_historico(id):
+    emprestimo = emprestimos_repository.get_emprestimo(id)
+    
+    if emprestimo.data_devolucao:
+        data_devolucao = emprestimos_repository.limpar_data_devolucao(emprestimo)
+
+    else:
+        data_devolucao = formatar_data(emprestimos_repository.set_data_devolucao(emprestimo))
+
+    return data_devolucao
     
 def limpar_livro_emprestimo(id):
     emprestimos_repository.limpar_livro_emprestimo(id)
@@ -65,6 +80,17 @@ def serialize_emprestimo(emp):
         "data_emprestimo": formatar_data(emp.data_emprestimo),
         "data_devolucao_prevista": formatar_data(emp.data_devolucao_prevista),
         "data_devolucao": formatar_data(emp.data_devolucao),
+    }
+
+def serialize_historico(emp):
+    print("\n\n\n\n", emp, flush=True)
+    return {
+        "id": emp.id,
+        "aluno": emp.aluno.nome if emp.aluno else None,
+        "livro": emp.livro.nome if emp.livro else None,
+        "data_emprestimo": formatar_data(emp.data_emprestimo),
+        "data_devolucao": formatar_data(emp.data_devolucao),
+        "turma": emp.turma if emp.turma else None
     }
 
 def formatar_data(data):

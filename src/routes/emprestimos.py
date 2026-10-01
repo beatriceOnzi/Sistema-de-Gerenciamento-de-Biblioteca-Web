@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 import src.services.emprestimos_service as emprestimos_service
-import src.services.historico_service as historico_service
-
 
 bp = Blueprint("turma", __name__, url_prefix="/turma")
 
@@ -42,6 +40,5 @@ def set_data_devolucao(turma):
 @bp.post('/<turma>/avancar_semana')
 def avancar_semana(turma):
     emprestimos_service.avancar_semana(turma)
-    historico_service.salvar_emprestimos(turma)
     emprestimos_service.criar_semana_emprestimos(turma)
     return redirect(url_for('turma.carregar_turma', turma=turma))

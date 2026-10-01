@@ -60,3 +60,14 @@ class EmprestimosRepository:
             )
             db.session.add(novo_emprestimo)
         db.session.commit()
+
+    def get_historico(self):
+        # pegar todos os emprestimos (menos o da semana atual das turmas) 
+
+        # temporario
+        return Emprestimo.query.all()
+
+
+    def get_emprestimo(self, id):
+        emprestimo = Emprestimo.query.filter_by(id = id).one()
+        return emprestimo
