@@ -8,18 +8,16 @@ from services.turmas_service import adicionar_turmas
 
 @pytest.fixture
 def app():
-
     app = create_app(TestConfig)
 
     with app.app_context():
         db.create_all()
-
         adicionar_turmas()
-
         yield app
-
+        
         db.session.remove()
         db.drop_all()
+        db.engine.dispose()
 
 @pytest.fixture
 def client(app):
