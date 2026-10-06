@@ -29,6 +29,14 @@ class AlunoRepository:
     def get_alunos_turma(self, turma_id):
         alunos_turma = Aluno.query.filter_by(turma=turma_id).order_by(Aluno.nome).all()
         return alunos_turma
+
+    def get_alunos_ativos_turma(self, turma_id):
+        alunos_turma = Aluno.query.filter(
+            Aluno.turma == turma_id,
+            Aluno.status == True,
+        ).order_by(Aluno.nome).all()
+
+        return alunos_turma
     
     def existe_aluno(self, id):
         return Aluno.query.filter_by(id=id).first() is not None

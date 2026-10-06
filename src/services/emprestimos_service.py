@@ -10,8 +10,8 @@ turma_repository = TurmaRepository()
 turmas_repository = TurmasRepository()
 emprestimos_repository = EmprestimosRepository()
 
-def get_alunos_turma(turma):
-    return aluno_repository.get_alunos_turma(turma)
+def get_alunos_ativos_turma(turma):
+    return aluno_repository.get_alunos_ativos_turma(turma)
 
 def get_semana_atual(turma):
     return turma_repository.get_semana_atual(turma)
@@ -68,7 +68,7 @@ def limpar_livro_emprestimo(id):
     emprestimos_repository.limpar_livro_emprestimo(id)
 
 def criar_semana_emprestimos(turma):
-    nova_semana = emprestimos_repository.criar_semana_emprestimos(turma, get_alunos_turma(turma), get_semana_atual(turma))
+    nova_semana = emprestimos_repository.criar_semana_emprestimos(turma, get_alunos_ativos_turma(turma), get_semana_atual(turma))
     return nova_semana
 
 def serialize_emprestimo(emp):

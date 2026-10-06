@@ -1,5 +1,6 @@
 from src.models import db, Emprestimo, Aluno
 from datetime import date
+from sqlalchemy import desc
 
 class EmprestimosRepository:
     def get_emprestimos_record(self, turma, semana_atual):
@@ -62,11 +63,11 @@ class EmprestimosRepository:
         db.session.commit()
 
     def get_historico(self):
-        # pegar todos os emprestimos (menos o da semana atual das turmas) 
+        emprestimos = Emprestimo.query.filter(
+            Emprestimo.livro_id != None
+            ).order_by(Emprestimo.data_emprestimo).all()
 
-        # temporario
-        return Emprestimo.query.all()
-
+        return emprestimos
 
     def get_emprestimo(self, id):
         emprestimo = Emprestimo.query.filter_by(id = id).one()
