@@ -19,6 +19,9 @@ def criar_aluno(dados):
 def deletar_aluno(id):
     return aluno_repository.deletar_aluno(id)
 
+def desativar_aluno(id):
+    return aluno_repository.desativar_aluno(id)
+
 def validar_aluno(dados):
     erros = []
 
@@ -43,3 +46,6 @@ def validar_aluno(dados):
 
 def existe_aluno(id):
     return aluno_repository.existe_aluno(id)
+
+def status_aluno(id):
+    return aluno_repository.status_aluno(id)

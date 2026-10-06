@@ -19,6 +19,12 @@ class AlunoRepository:
         if aluno:
             db.session.delete(aluno)
             db.session.commit()
+
+    def desativar_aluno(self, id):
+        aluno = db.session.get(Aluno, id)
+        if aluno:
+            aluno.status = False
+            db.session.commit()
         
     def get_alunos_turma(self, turma_id):
         alunos_turma = Aluno.query.filter_by(turma=turma_id).order_by(Aluno.nome).all()
@@ -26,6 +32,10 @@ class AlunoRepository:
     
     def existe_aluno(self, id):
         return Aluno.query.filter_by(id=id).first() is not None
+
+    def status_aluno(self, id):
+        print("aaaaaaaaaaaa", Aluno.query.filter_by(id=id).first().status )
+        return Aluno.query.filter_by(id=id).first().status
 
     def existe_by_name_turma(self, nome, aluno):
         return Aluno.query.filter(
