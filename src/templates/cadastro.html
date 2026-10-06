@@ -38,6 +38,23 @@
         <!-- registro | formulario -->
         <div class="flex bg-cnec-amarelo {% if grupo == 'alunos' %} bg-cnec-azul-escuro {% endif %} p-6 flex-col md:flex-row gap-8">
 
+            <!-- Confirmação -->
+            <div id="confirmacao" class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-200">
+            <div id="box" class="bg-white rounded-lg shadow-2xl p-6 md:p-7 max-w-sm w-[90%] scale-95 transition-transform duration-200">
+                <h3 id="titulo" class="text-lg font-bold text-cnec-azul-escuro border-l-4 border-cnec-amarelo pl-3 mb-3"></h3>
+                <p id="mensagem" class="text-cnec-azul-escuro/80 mb-6"></p>
+                <div class="flex justify-end gap-3">
+                <button id="cancelar_btn" type="button"
+                    class="px-6 py-2 rounded font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                    Cancelar
+                </button>
+                <button id="confirmar_btn" type="button"
+                    class="px-4 py-2 rounded font-bold bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                    Excluir
+                </button>
+                </div>
+            </div>
+            </div>
             {% if grupo == "alunos" %}
 
                 <!-- registros -->
@@ -48,7 +65,9 @@
                         {% for aluno in alunos %}
                             <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
                                 {{aluno.nome}} - {{aluno.turma}}º Ano
-                                <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post">
+                                <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post"
+                                    data-confirmar
+                                    data-nome="{{ aluno.nome }}">
                                     <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-red-700 cursor-pointer group-hover:text-cnec-branco font-bold px-2 py-1 rounded">
                                         Excluir
                                     </button>
@@ -119,7 +138,9 @@
                         {% for livro in livros %}
                             <li class="group flex justify-between items-center hover:bg-cnec-amarelo-claro bg-cnec-branco p-2 rounded text-cnec-azul-escuro">
                                 {{livro.nome}}
-                                <form action="/cadastro/livros/delete/{{livro.id}}" method="POST" >
+                                <form action="/cadastro/livros/delete/{{livro.id}}" method="POST"
+                                    data-confirmar
+                                    data-nome="{{ livro.nome }}">
                                     <button type="submit" class="bg-opacity-0 text-transparent group-hover:text-cnec-branco group-hover:bg-red-600 cursor-pointer font-bold px-2 py-1 rounded">
                                         Excluir
                                     </button>
@@ -170,5 +191,8 @@
     </div>
 
 </div>
+
+<script src="../../static/js/cadastro.js" type="module"></script>
+
 
 {% endblock %}
