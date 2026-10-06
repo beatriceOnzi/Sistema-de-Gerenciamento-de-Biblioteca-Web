@@ -64,43 +64,30 @@
 
                     <ul class="space-y-2">
                         {% for aluno in alunos %}
-                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro
-                                    {% if not aluno.ativo %} opacity-60 {% endif %}">
-                                <span>
-                                    {{ aluno.nome }} - {{ aluno.turma }}º Ano
-                                    {% if not aluno.ativo %}<em class="text-sm">(desativado)</em>{% endif %}
-                                </span>
-
-                                <div class="flex gap-1">
-                                    {% if aluno.ativo %}
-                                        <form action="/cadastro/alunos/desativar/{{ aluno.id }}" method="post"
-                                            data-confirmar
-                                            data-titulo="Desativar aluno?"
-                                            data-mensagem="{{ aluno.nome }} deixará de aparecer nas listas, mas poderá ser reativado depois."
-                                            data-texto="Sim, desativar">
-                                            <button type="submit" class="text-transparent group-hover:bg-cnec-amarelo group-hover:text-cnec-amarelo-escuro cursor-pointer font-bold px-2 py-1 rounded">
-                                                Desativar
-                                            </button>
-                                        </form>
-                                    {% else %}
-                                        <form action="/cadastro/alunos/ativar/{{ aluno.id }}" method="post">
-                                            <button type="submit" class="text-transparent group-hover:bg-lime-500 group-hover:text-cnec-azul-escuro cursor-pointer font-bold px-2 py-1 rounded">
-                                                Reativar
-                                            </button>
-                                        </form>
-                                    {% endif %}
-
-                                    <form action="/cadastro/alunos/delete/{{ aluno.id }}" method="post"
+                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
+                                {{aluno.nome}} - {{aluno.turma}}º Ano
+                                <div class="flex gap-2">
+                                    <form action="/cadastro/alunos/desativar/{{aluno.id}}" method="post"
+                                        data-confirmar
+                                        data-titulo="Desativar aluno?"
+                                        data-mensagem="{{ aluno.nome }} deixará de aparecer em turmas, mas seu histórico será preservado."
+                                        data-texto="Sim, desativar">
+                                        <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-cnec-amarelo cursor-pointer group-hover:text-cnec-amarelo-escuro font-bold px-2 py-1 rounded">
+                                            Desativar
+                                        </button>
+                                    </form>
+                                    <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post"
                                         data-confirmar
                                         data-titulo="Excluir aluno?"
-                                        data-mensagem="{{ aluno.nome }} será removido permanentemente. Essa ação não pode ser desfeita."
+                                        data-mensagem="Todos os empréstimos realizados por {{ aluno.nome }} serão excluidos. Essa ação não pode ser desfeita."
                                         data-texto="Sim, excluir">
-                                        <button type="submit" class="text-transparent group-hover:bg-red-700 group-hover:text-cnec-branco cursor-pointer font-bold px-2 py-1 rounded">
+                                        <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-red-700 cursor-pointer group-hover:text-cnec-branco font-bold px-2 py-1 rounded">
                                             Excluir
                                         </button>
                                     </form>
-                                    </div>
-                                </li>
+                                </div>
+        
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>

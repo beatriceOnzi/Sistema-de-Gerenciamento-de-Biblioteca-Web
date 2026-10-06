@@ -5,9 +5,9 @@ document.querySelectorAll('form[data-confirmar]').forEach((form) => {
         e.preventDefault()
 
         const confirmado = await confirmar({
-            titulo: 'Excluir cadastro?',
-            mensagem: `Deseja realmente excluir "${form.dataset.nome}"? Todos os empréstimos realizados por esse aluno serão excluidos. Essa ação não pode ser desfeita.`,
-            textoConfirmar: 'Sim, excluir'
+            titulo: form.dataset.titulo,
+            mensagem: form.dataset.mensagem,
+            textoConfirmar: form.dataset.texto
         })
 
         if (confirmado) form.submit()

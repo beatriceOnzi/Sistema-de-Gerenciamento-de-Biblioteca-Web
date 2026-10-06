@@ -36,3 +36,8 @@ def deletar_aluno_registrado(id):
     if not existe_aluno(id):
         flash("Aluno deletado com sucesso!", 'sucesso')
     return redirect(url_for('cadastro_alunos.carregar_cadastro_alunos'))
+
+@bp.route('/cadastro/alunos/desativar/<int:id>', methods=['POST'])
+def desativar_aluno_registrado(id):
+    return "nao implementado"
+    #desativar_aluno(id)
