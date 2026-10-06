@@ -29,9 +29,10 @@ class EmprestimosRepository:
         ).order_by(Aluno.nome).first()
         return emprestimo
     
-    def save_title(self, id, livro_id):
+    def save_title(self, id, livro_id, livro_nome):
         emprestimo = Emprestimo.query.filter_by(id = id).one()
         emprestimo.livro_id = livro_id
+        emprestimo.livro_nome = livro_nome
         db.session.commit()
     
     def limpar_livro_emprestimo(self, id):
@@ -64,7 +65,7 @@ class EmprestimosRepository:
 
     def get_historico(self):
         emprestimos = Emprestimo.query.filter(
-            Emprestimo.livro_id != None
+            Emprestimo.livro_nome != None
             ).order_by(Emprestimo.data_emprestimo).all()
 
         return emprestimos

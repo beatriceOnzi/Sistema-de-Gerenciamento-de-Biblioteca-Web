@@ -11,6 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
   web:
     build: .
     env_file:
@@ -19,7 +20,8 @@ services:
       - db
     ports:
       - "5000:5000"
-      
+    volumes:
+      - ./migrations:/app/migrations
     develop:
       watch:
         - action: sync+restart

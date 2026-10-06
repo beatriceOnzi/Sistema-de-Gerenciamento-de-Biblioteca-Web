@@ -10,7 +10,8 @@ class Emprestimo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     aluno_id = db.Column(db.Integer, db.ForeignKey("alunos.id"))
-    livro_id = db.Column(db.Integer, db.ForeignKey("livros.id"))
+    livro_id = db.Column(db.Integer, db.ForeignKey("livros.id", ondelete="SET NULL"), nullable=True)
+    livro_nome = db.Column(db.String(120))
 
     data_emprestimo = db.Column(db.Date, default=date.today)
     data_devolucao_prevista = db.Column(db.Date, default=calc_data_dev_prevista)
@@ -19,7 +20,5 @@ class Emprestimo(db.Model):
     turma = db.Column(db.Integer, db.ForeignKey("turma.turma"))
     semana = db.Column(db.Integer)
     
-    aluno = db.relationship("Aluno")
-    livro = db.relationship("Livro")
-
     aluno = db.relationship("Aluno", back_populates="emprestimos")
+    livro = db.relationship("Livro")

@@ -42,7 +42,6 @@ class AlunoRepository:
         return Aluno.query.filter_by(id=id).first() is not None
 
     def status_aluno(self, id):
-        print("aaaaaaaaaaaa", Aluno.query.filter_by(id=id).first().status )
         return Aluno.query.filter_by(id=id).first().status
 
     def existe_by_name_turma(self, nome, aluno):

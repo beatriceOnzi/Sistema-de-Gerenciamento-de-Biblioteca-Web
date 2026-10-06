@@ -39,7 +39,7 @@ def save_title(id, titulo):
         return
     titulo.strip()
     livro_id = livro_repository.get_id_by_title(titulo)
-    emprestimos_repository.save_title(id, livro_id)
+    emprestimos_repository.save_title(id, livro_id, titulo)
 
 def set_data_devolucao(titulo, aluno, turma):
     semana_record = get_semana_atual(turma) - 1
@@ -87,7 +87,7 @@ def serialize_historico(emp):
     return {
         "id": emp.id,
         "aluno": emp.aluno.nome if emp.aluno else None,
-        "livro": emp.livro.nome if emp.livro else None,
+        "livro": emp.livro_nome if emp.livro_nome else None,
         "data_emprestimo": formatar_data(emp.data_emprestimo),
         "data_devolucao": formatar_data(emp.data_devolucao),
         "turma": emp.turma if emp.turma else None
