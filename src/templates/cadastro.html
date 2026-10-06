@@ -40,21 +40,22 @@
 
             <!-- Confirmação -->
             <div id="confirmacao" class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-200">
-            <div id="box" class="bg-white rounded-lg shadow-2xl p-6 md:p-7 max-w-sm w-[90%] scale-95 transition-transform duration-200">
-                <h3 id="titulo" class="text-lg font-bold text-cnec-azul-escuro border-l-4 border-cnec-amarelo pl-3 mb-3"></h3>
-                <p id="mensagem" class="text-cnec-azul-escuro/80 mb-6"></p>
-                <div class="flex justify-end gap-3">
-                <button id="cancelar_btn" type="button"
-                    class="px-6 py-2 rounded font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed">
-                    Cancelar
-                </button>
-                <button id="confirmar_btn" type="button"
-                    class="px-4 py-2 rounded font-bold bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
-                    Excluir
-                </button>
+                <div id="box" class="bg-white rounded-lg shadow-2xl p-6 md:p-7 max-w-sm w-[90%] scale-95 transition-transform duration-200">
+                    <h3 id="titulo" class="text-lg font-bold text-cnec-azul-escuro border-l-4 border-cnec-amarelo pl-3 mb-3"></h3>
+                    <p id="mensagem" class="text-cnec-azul-escuro/80 mb-6"></p>
+                    <div class="flex justify-end gap-3">
+                    <button id="cancelar_btn" type="button"
+                        class="px-6 py-2 rounded font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        Cancelar
+                    </button>
+                    <button id="confirmar_btn" type="button"
+                        class="px-4 py-2 rounded font-bold bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        Excluir
+                    </button>
+                    </div>
                 </div>
             </div>
-            </div>
+
             {% if grupo == "alunos" %}
 
                 <!-- registros -->
@@ -63,16 +64,43 @@
 
                     <ul class="space-y-2">
                         {% for aluno in alunos %}
-                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
-                                {{aluno.nome}} - {{aluno.turma}}º Ano
-                                <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post"
-                                    data-confirmar
-                                    data-nome="{{ aluno.nome }}">
-                                    <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-red-700 cursor-pointer group-hover:text-cnec-branco font-bold px-2 py-1 rounded">
-                                        Excluir
-                                    </button>
-                                </form>
-                            </li>
+                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro
+                                    {% if not aluno.ativo %} opacity-60 {% endif %}">
+                                <span>
+                                    {{ aluno.nome }} - {{ aluno.turma }}º Ano
+                                    {% if not aluno.ativo %}<em class="text-sm">(desativado)</em>{% endif %}
+                                </span>
+
+                                <div class="flex gap-1">
+                                    {% if aluno.ativo %}
+                                        <form action="/cadastro/alunos/desativar/{{ aluno.id }}" method="post"
+                                            data-confirmar
+                                            data-titulo="Desativar aluno?"
+                                            data-mensagem="{{ aluno.nome }} deixará de aparecer nas listas, mas poderá ser reativado depois."
+                                            data-texto="Sim, desativar">
+                                            <button type="submit" class="text-transparent group-hover:bg-cnec-amarelo group-hover:text-cnec-amarelo-escuro cursor-pointer font-bold px-2 py-1 rounded">
+                                                Desativar
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form action="/cadastro/alunos/ativar/{{ aluno.id }}" method="post">
+                                            <button type="submit" class="text-transparent group-hover:bg-lime-500 group-hover:text-cnec-azul-escuro cursor-pointer font-bold px-2 py-1 rounded">
+                                                Reativar
+                                            </button>
+                                        </form>
+                                    {% endif %}
+
+                                    <form action="/cadastro/alunos/delete/{{ aluno.id }}" method="post"
+                                        data-confirmar
+                                        data-titulo="Excluir aluno?"
+                                        data-mensagem="{{ aluno.nome }} será removido permanentemente. Essa ação não pode ser desfeita."
+                                        data-texto="Sim, excluir">
+                                        <button type="submit" class="text-transparent group-hover:bg-red-700 group-hover:text-cnec-branco cursor-pointer font-bold px-2 py-1 rounded">
+                                            Excluir
+                                        </button>
+                                    </form>
+                                    </div>
+                                </li>
                         {% endfor %}
                     </ul>
                 </div>

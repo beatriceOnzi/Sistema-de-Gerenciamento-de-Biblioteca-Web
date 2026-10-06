@@ -21,3 +21,5 @@ class Emprestimo(db.Model):
     
     aluno = db.relationship("Aluno")
     livro = db.relationship("Livro")
+
+    aluno = db.relationship("Aluno", back_populates="emprestimos")

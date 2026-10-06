@@ -7,4 +7,8 @@ class Aluno(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     turma = db.Column(db.Integer)
 
-    
+    emprestimos = db.relationship(
+        "Emprestimo",
+        back_populates="aluno",
+        cascade="all, delete-orphan",
+    )
