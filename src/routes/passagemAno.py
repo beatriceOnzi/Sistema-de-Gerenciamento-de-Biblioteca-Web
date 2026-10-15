@@ -9,6 +9,5 @@ def index():
 
 @bp.route('/avancarAno', methods=['GET'])
 def avancarAno():
-    print("rota")
     mensagem = passagemAno_service.avancar_turmas()
     return jsonify(mensagem)

@@ -83,7 +83,6 @@ def serialize_emprestimo(emp):
     }
 
 def serialize_historico(emp):
-    print("\n\n\n\n", emp, flush=True)
     return {
         "id": emp.id,
         "aluno": emp.aluno.nome if emp.aluno else None,

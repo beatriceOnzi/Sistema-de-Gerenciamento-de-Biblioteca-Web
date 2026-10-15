@@ -41,17 +41,30 @@ function devolucao_pendente_style(cell) {
 
 const input_aluno = document.getElementById("alunos_pesquisa");
 const input_livro = document.getElementById("livros_pesquisa");
+const select_turma = document.getElementById("turma_pesquisa")
 const select_pendencia = document.getElementById("filtro_pendencia");
+
+input_aluno.addEventListener("input", debounce(aplicar_filtros));
+input_livro.addEventListener("input", debounce(aplicar_filtros));
+select_turma.addEventListener("change", aplicar_filtros);
+select_pendencia.addEventListener("change", aplicar_filtros);
 
 function aplicar_filtros() {
     const filtros = [];
 
-    if (input_aluno.value.trim() !== "") {
-        filtros.push({ field: "aluno", type: "like", value: input_aluno.value.trim() });
+    const aluno = input_aluno.value.trim();
+    const livro = input_livro.value.trim();
+
+    if (aluno !== "") {
+        filtros.push({ field: "aluno", type: "like", value: aluno });
     }
 
-    if (input_livro.value.trim() !== "") {
-        filtros.push({ field: "livro", type: "like", value: input_livro.value.trim() });
+    if (livro !== "") {
+        filtros.push({ field: "livro", type: "like", value: livro });
+    }
+
+    if (select_turma.value !== "") {
+        filtros.push({ field: "turma", type: "=", value: formatar_turma(select_turma.value) });
     }
 
     if (select_pendencia.value === "pendente") {
@@ -63,6 +76,8 @@ function aplicar_filtros() {
     historico.setFilter(filtros);
 }
 
+const pendente = v => v == null || v === "" || v === "null";
+
 function formatar_turma(turma_int){ return `${turma_int}º Ano` }
 
 function debounce(fn, delay = 250) {
@@ -72,10 +87,6 @@ function debounce(fn, delay = 250) {
         timer = setTimeout(() => fn(...args), delay);
     };
 }
-
-input_aluno.addEventListener("input", debounce(aplicar_filtros));
-input_livro.addEventListener("input", debounce(aplicar_filtros));
-select_pendencia.addEventListener("change", aplicar_filtros);
 
 async function get_historico_data() {
     const response = await fetch("./get_historico_data");
