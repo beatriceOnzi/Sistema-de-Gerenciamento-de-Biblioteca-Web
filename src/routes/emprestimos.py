@@ -1,6 +1,11 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 import src.services.emprestimos_service as emprestimos_service
 
+import threading
+from flask import current_app
+
+timers_save_title = {}
+
 bp = Blueprint("turma", __name__, url_prefix="/turma")
 
 @bp.route('/<turma>/')
@@ -17,6 +22,11 @@ def get_emprestimos_cadastro(turma):
     new_emprestimos = emprestimos_service.get_emprestimos_cadastro(turma)
     return jsonify(new_emprestimos)
 
+def executar_save_title(app, id, titulo):
+    with app.app_context():
+        emprestimos_service.save_title(id, titulo)
+    timers_save_title.pop(id, None)
+
 @bp.post('/<turma>/save_title')
 def save_title(turma):
     data = request.get_json()
@@ -24,7 +34,16 @@ def save_title(turma):
     id = data.get('id')
     titulo = data.get('title')
 
-    emprestimos_service.save_title(id, titulo)
+    app = current_app._get_current_object()
+
+    antigo = timers_save_title.get(id)
+    if antigo:
+        antigo.cancel()
+
+    timer = threading.Timer(3, executar_save_title, args=(app, id, titulo))
+    timers_save_title[id] = timer
+    timer.start()
+
     return jsonify("ok")
 
 @bp.post('/<turma>/set_data_devolucao')
