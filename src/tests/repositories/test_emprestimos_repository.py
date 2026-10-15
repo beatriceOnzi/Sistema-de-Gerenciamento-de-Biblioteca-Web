@@ -55,7 +55,7 @@ def test_save_title_associa_livro_ao_emprestimo(app):
     repo.criar_semana_emprestimos(7, [aluno], 1)
     emprestimo = Emprestimo.query.filter_by(turma=7).first()
 
-    repo.save_title(emprestimo.id, 1)
+    repo.save_title(emprestimo.id, 1, "Livro Teste")
 
     atualizado = Emprestimo.query.filter_by(id=emprestimo.id).first()
     assert atualizado.livro_id == 1
@@ -65,7 +65,7 @@ def test_limpar_livro_emprestimo_remove_associacao(app):
     aluno = _criar_aluno("Aluno Repo Sete", 8)
     repo.criar_semana_emprestimos(8, [aluno], 1)
     emprestimo = Emprestimo.query.filter_by(turma=8).first()
-    repo.save_title(emprestimo.id, 1)
+    repo.save_title(emprestimo.id, 1, "Livro Teste")
 
     repo.limpar_livro_emprestimo(emprestimo.id)
 

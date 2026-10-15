@@ -36,7 +36,7 @@
         </div>
 
         <!-- registro | formulario -->
-        <div class="flex bg-cnec-amarelo {% if grupo == 'alunos' %} bg-cnec-azul-escuro {% endif %} p-6 flex-col md:flex-row gap-8">
+        <div class="flex bg-cnec-amarelo {% if grupo == 'alunos' %} bg-cnec-azul-escuro {% endif %} p-6 flex-col md:flex-row gap-8 min-h-96 items-center justify-center">
 
             <!-- Confirmação -->
             <div id="confirmacao" class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-200">
@@ -59,12 +59,15 @@
             {% if grupo == "alunos" %}
 
                 <!-- registros -->
-                <div class="bg-cnec-amarelo p-4 w-full md:w-1/2 max-h-80 overflow-y-auto">
+                <div class="bg-cnec-amarelo p-4 w-full md:w-1/2 h-80 overflow-y-auto">
                     <h2 class="font-bold mb-3 text-lg">Alunos cadastrados</h2>
+                    <input type="search" id="busca" placeholder="Buscar aluno..."
+                        class="w-full mb-3 p-2 rounded bg-cnec-branco text-cnec-azul-escuro outline-none focus:outline-2 focus:outline-cnec-azul"
+                        autocomplete="off">
 
                     <ul class="space-y-2">
                         {% for aluno in alunos %}
-                            <li class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
+                            <li data-nome="{{ aluno.nome|lower }}" class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
                                 {{aluno.nome}} - {{aluno.turma}}º Ano
                                 <div class="flex gap-2">
                                     <form action="/cadastro/alunos/desativar/{{aluno.id}}" method="post"
@@ -104,6 +107,7 @@
                                 name="nome_aluno"
                                 type="text"
                                 value="{{ nome }}"
+                                placeholder="Digite o nome do aluno..."
                                 class="p-2 rounded bg-cnec-branco text-cnec-azul-escuro outline-none focus:outline-2 focus:outline-cnec-amarelo">
                         </div>
 
@@ -146,12 +150,16 @@
             {% if grupo == "livros" %}
 
                 <!-- registros -->
-                <div class="bg-cnec-azul-escuro p-4 w-full md:w-1/2 max-h-80 overflow-y-auto">
+                <div class="bg-cnec-azul-escuro p-4 w-full md:w-1/2 h-80 overflow-y-auto">
                     <h2 class="font-bold mb-3 text-lg text-cnec-branco">Livros cadastrados</h2>
+
+                    <input type="search" id="busca" placeholder="Buscar livro..."
+                        class="w-full mb-3 p-2 rounded bg-cnec-branco text-cnec-azul-escuro outline-none focus:outline-2 focus:outline-cnec-amarelo"
+                        autocomplete="off">
 
                     <ul class="space-y-2">
                         {% for livro in livros %}
-                            <li class="group flex justify-between items-center hover:bg-cnec-amarelo-claro bg-cnec-branco p-2 rounded text-cnec-azul-escuro">
+                            <li data-nome="{{ livro.nome|lower }}" class="group flex justify-between items-center hover:bg-cnec-amarelo-claro bg-cnec-branco p-2 rounded text-cnec-azul-escuro">
                                 {{livro.nome}}
                                 <form action="/cadastro/livros/delete/{{livro.id}}" method="POST"
                                     data-confirmar
