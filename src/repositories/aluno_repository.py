@@ -60,7 +60,7 @@ class AlunoRepository:
         alunos = self.get_alunos()
         for aluno in alunos:
             if aluno.turma == 9:
-                aluno.turma = None
+                self.desativar_aluno(aluno.id)
             else:
                 aluno.turma = aluno.turma + 1
         db.session.commit()
