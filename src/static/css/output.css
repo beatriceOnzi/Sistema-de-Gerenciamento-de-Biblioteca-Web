@@ -2253,6 +2253,10 @@ video {
   height:10rem
 }
 
+.h-80{
+  height:20rem
+}
+
 .h-96{
   height:24rem
 }
@@ -2274,12 +2278,8 @@ video {
   height:max-content
 }
 
-.h-80{
-  height:20rem
-}
-
-.max-h-80{
-  max-height:20rem
+.min-h-96{
+  min-height:24rem
 }
 
 .min-h-full{
@@ -2288,14 +2288,6 @@ video {
 
 .min-h-screen{
   min-height:100vh
-}
-
-.min-h-96{
-  min-height:24rem
-}
-
-.min-h-80{
-  min-height:20rem
 }
 
 .w-1\/2{
@@ -3024,10 +3016,6 @@ video {
   outline-color:#f5c518
 }
 
-.focus\:outline-cnec-azul-escuro:focus{
-  outline-color:#002054
-}
-
 .focus\:outline-cnec-azul:focus{
   outline-color:#003c9d
 }
@@ -3050,6 +3038,11 @@ video {
   background-color:rgb(245 197 24 / var(--tw-bg-opacity, 1))
 }
 
+.group:hover .group-hover\:bg-cnec-azul-claro{
+  --tw-bg-opacity:1;
+  background-color:rgb(107 123 184 / var(--tw-bg-opacity, 1))
+}
+
 .group:hover .group-hover\:bg-red-600{
   --tw-bg-opacity:1;
   background-color:rgb(220 38 38 / var(--tw-bg-opacity, 1))
@@ -3060,14 +3053,49 @@ video {
   background-color:rgb(185 28 28 / var(--tw-bg-opacity, 1))
 }
 
+.group:hover .group-hover\:bg-cnec-azul{
+  --tw-bg-opacity:1;
+  background-color:rgb(0 60 157 / var(--tw-bg-opacity, 1))
+}
+
+.group:hover .group-hover\:bg-cnec-azul-escuro{
+  --tw-bg-opacity:1;
+  background-color:rgb(0 32 84 / var(--tw-bg-opacity, 1))
+}
+
+.group:hover .group-hover\:bg-lime-500{
+  --tw-bg-opacity:1;
+  background-color:rgb(132 204 22 / var(--tw-bg-opacity, 1))
+}
+
 .group:hover .group-hover\:text-cnec-amarelo-escuro{
   --tw-text-opacity:1;
   color:rgb(69 53 1 / var(--tw-text-opacity, 1))
 }
 
+.group:hover .group-hover\:text-cnec-azul{
+  --tw-text-opacity:1;
+  color:rgb(0 60 157 / var(--tw-text-opacity, 1))
+}
+
 .group:hover .group-hover\:text-cnec-branco{
   --tw-text-opacity:1;
   color:rgb(245 245 242 / var(--tw-text-opacity, 1))
+}
+
+.group:hover .group-hover\:text-cnec-azul-claro{
+  --tw-text-opacity:1;
+  color:rgb(107 123 184 / var(--tw-text-opacity, 1))
+}
+
+.group:hover .group-hover\:text-lime-500{
+  --tw-text-opacity:1;
+  color:rgb(132 204 22 / var(--tw-text-opacity, 1))
+}
+
+.group:hover .group-hover\:text-cnec-azul-escuro{
+  --tw-text-opacity:1;
+  color:rgb(0 32 84 / var(--tw-text-opacity, 1))
 }
 
 @media not all and (min-width: 768px){

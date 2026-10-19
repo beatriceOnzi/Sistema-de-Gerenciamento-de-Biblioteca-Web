@@ -11,7 +11,6 @@ def carregar_cadastro_alunos():
     alunos = get_alunos()
     return render_template('cadastro.html', current_page = 2, grupo = "alunos", alunos = alunos, nome = nome, turma = turma)
 
-
 @bp.route('/novo', methods=['POST'])
 def cadastrar_novo_aluno():
     dados = {
@@ -29,7 +28,6 @@ def cadastrar_novo_aluno():
     flash("Aluno cadastrado com sucesso!", "sucesso")
     return redirect(url_for('cadastro_alunos.carregar_cadastro_alunos'), 302)
 
-
 @bp.route('/delete/<int:id>', methods=['POST'])
 def deletar_aluno_registrado(id):
     deletar_aluno(id)
@@ -42,4 +40,11 @@ def desativar_aluno_registrado(id):
     desativar_aluno(id)
     if not status_aluno(id):
         flash("Aluno desativado com sucesso!", 'sucesso')
+    return redirect(url_for('cadastro_alunos.carregar_cadastro_alunos'))
+
+@bp.route('/ativar/<int:id>', methods=['POST'])
+def ativar_aluno_registrado(id):
+    ativar_aluno(id)
+    if status_aluno(id):
+        flash("Aluno ativado com sucesso!", 'sucesso')
     return redirect(url_for('cadastro_alunos.carregar_cadastro_alunos'))

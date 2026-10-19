@@ -2,7 +2,7 @@ from src.models import db, Aluno
 
 class AlunoRepository:
     def get_alunos(self):
-        alunos = Aluno.query.order_by(Aluno.turma).all()
+        alunos = Aluno.query.order_by(Aluno.turma, Aluno.nome).all()
         return alunos
 
     def get_aluno_by_nome(self, nome):
@@ -24,6 +24,12 @@ class AlunoRepository:
         aluno = db.session.get(Aluno, id)
         if aluno:
             aluno.status = False
+            db.session.commit()
+
+    def ativar_aluno(self, id):
+        aluno = db.session.get(Aluno, id)
+        if aluno:
+            aluno.status = True
             db.session.commit()
         
     def get_alunos_turma(self, turma_id):

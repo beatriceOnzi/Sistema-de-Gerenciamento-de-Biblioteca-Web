@@ -22,6 +22,9 @@ def deletar_aluno(id):
 def desativar_aluno(id):
     return aluno_repository.desativar_aluno(id)
 
+def ativar_aluno(id):
+    return aluno_repository.ativar_aluno(id)
+
 def validar_aluno(dados):
     erros = []
 

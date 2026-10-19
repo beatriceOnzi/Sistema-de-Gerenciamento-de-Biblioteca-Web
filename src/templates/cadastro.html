@@ -70,15 +70,28 @@
                             <li data-nome="{{ aluno.nome|lower }}" class="group flex justify-between items-center bg-cnec-azul-escuro p-2 rounded text-cnec-branco hover:bg-cnec-azul-claro">
                                 {{aluno.nome}} - {{aluno.turma}}º Ano
                                 <div class="flex gap-2">
-                                    <form action="/cadastro/alunos/desativar/{{aluno.id}}" method="post"
-                                        data-confirmar
-                                        data-titulo="Desativar aluno?"
-                                        data-mensagem="{{ aluno.nome }} deixará de aparecer em turmas, mas seu histórico será preservado."
-                                        data-texto="Sim, desativar">
-                                        <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-cnec-amarelo cursor-pointer group-hover:text-cnec-amarelo-escuro font-bold px-2 py-1 rounded">
-                                            Desativar
-                                        </button>
-                                    </form>
+                                    {% if aluno.status %}
+                                        <form action="/cadastro/alunos/desativar/{{aluno.id}}" method="post"
+                                            data-confirmar
+                                            data-titulo="Desativar aluno?"
+                                            data-mensagem="{{ aluno.nome }} deixará de aparecer em turmas, mas seu histórico será preservado."
+                                            data-texto="Sim, desativar">
+                                            <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-cnec-amarelo cursor-pointer group-hover:text-cnec-amarelo-escuro font-bold px-2 py-1 rounded">
+                                                Desativar
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form action="/cadastro/alunos/ativar/{{aluno.id}}" method="post"
+                                            data-confirmar
+                                            data-titulo="Ativar aluno?"
+                                            data-mensagem="{{ aluno.nome }} irá aparecer em turmas"
+                                            data-texto="Sim, ativar">
+                                            <button type="submit" class="bg-opacity-0 text-transparent group-hover:bg-lime-500 cursor-pointer group-hover:text-cnec-azul-escuro font-bold px-2 py-1 rounded">
+                                                Ativar
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                    
                                     <form action="/cadastro/alunos/delete/{{aluno.id}}" method="post"
                                         data-confirmar
                                         data-titulo="Excluir aluno?"
@@ -163,7 +176,11 @@
                                 {{livro.nome}}
                                 <form action="/cadastro/livros/delete/{{livro.id}}" method="POST"
                                     data-confirmar
-                                    data-nome="{{ livro.nome }}">
+                                    data-titulo="Excluir livro?"
+                                    data-nome="{{ livro.nome }}"
+                                    data-mensagem="Tem certeza que deseja excluir o livro {{ livro.nome }}"
+                                    data-texto="Sim, excluir"
+                                    >
                                     <button type="submit" class="bg-opacity-0 text-transparent group-hover:text-cnec-branco group-hover:bg-red-600 cursor-pointer font-bold px-2 py-1 rounded">
                                         Excluir
                                     </button>
