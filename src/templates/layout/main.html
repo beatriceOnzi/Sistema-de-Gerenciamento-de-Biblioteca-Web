@@ -7,11 +7,11 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body id="corpo" class="font-poppins min-h-screen bg-cnec-branco overflow-x-hidden">
+<body id="corpo" class="font-poppins min-h-screen flex flex-col bg-cnec-branco overflow-x-hidden">
 
     {% include "partials/navbar.html" %}
 
-    <main class="flex min-h-screen w-full overflow-hidden ">
+    <main class="flex flex-1 w-full overflow-hidden">
         {% block content %}
         {% endblock %}
     </main>

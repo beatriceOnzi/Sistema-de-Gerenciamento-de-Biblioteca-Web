@@ -3,8 +3,8 @@
 {% block title %}Biblioteca CNEC{% endblock %}
 
 {% block content %}
-<div class="flex justify-center w-full min-h-full items-start py-12 px-4">
-
+<div class="flex justify-center items-center w-full py-12 px-4">
+    
     <div class="relative w-full md:max-w-3xl sm:max-w-lg max-w-sm">
 
         <!-- Quadrado amarelo -->
@@ -54,8 +54,43 @@
                         </ol>
                         <div class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">
                             <p>A data de devolução será salva após ser designado um novo livro ao aluno.</p>
-                            <p>O salvamento de empréstimos é feito automaticamente.</p>
+                            <p>Os empréstimos são salvos automaticamente após alguns segundos.</p>
+                            <p>Confira o título antes de confirmar, pois o texto será cadastrado como um novo livro.</p>
                         </div>
+                    </section>
+
+                    <section class="bg-cnec-azul-claro p-5 rounded-sm">
+                        <h2 class="text-xl md:text-xl font-bold border-l-4 border-cnec-amarelo pl-3 mb-2">
+                            Cadastro
+                        </h2>
+                        <h3 class="text-lg font-bold border-l-4 border-cnec-amarelo ms-4 pl-3 mb-2">
+                            Alunos
+                        </h3>
+                        <ol class="list-decimal list-inside space-y-1 pl-3 text-base ms-2 md:text-lg">
+                            <li>Todos os alunos estão listados em ordenados por turma e nome.</li>
+                            <li>Desativar alunos ➝ aluno não realiza mais empréstimos, mas seus registros são preservados.
+                                <ol class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">
+                                    <li>Ao desativar um aluno, ele deixará de aparecer em novas semanas de empréstimos.</li>
+                                    <li>Utilizado nos casos de saída do aluno da instituição.</li>
+                                    <li>É possível reativar um aluno, permitindo-o realizar empréstimos</li>
+                                </ol>    
+                            </li>
+                            <li>Excluir alunos ➝ aluno terá todos os seus empréstimos deletados permanentemente.
+                                <p class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">Utilizado para apagar alunos cadastrados com dados incorretos</p>
+                            </li>
+                        </ol>
+
+                        <h3 class="text-lg border-l-4 border-cnec-amarelo font-bold ms-4 pl-3 mb-2 mt-5">
+                            Livros
+                        </h3>
+
+                        <ol class="list-decimal list-inside space-y-1 ms-2 pl-3 text-base md:text-lg">
+                            <li>Lista completa de livros, organizada em ordem alfabética.</li>
+                            <li>Excluir livro
+                                <p class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">O livro deixará de estar disponível para novos empréstimos</p>                             
+                                <p class="mt-3 pl-3 space-y-1 text-sm md:text-base italic text-cnec-azul-escuro/80">Empréstimos já cadastrados continuaram exibindo o livro excluido</p>
+                            </li>
+                        </ol>
                     </section>
 
                     <section class="bg-cnec-azul-claro p-5 rounded-sm">
@@ -83,8 +118,9 @@
                             Histórico
                         </h2>
                         <ul class="list-disc list-inside space-y-1 pl-3 text-base md:text-lg">
-                            <li>Na aba histórico estão todos os registros de empréstimos.</li>
+                            <li>Lista de todos os registros de empréstimos.</li>
                             <li>Para alterar a situação de um empréstimo, clique na célula.</li>
+                            <li>Pesquisa por aluno, turma, livro e situação.</li>
                         </ul>
                     </section>
 
