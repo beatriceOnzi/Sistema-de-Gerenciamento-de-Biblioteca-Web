@@ -19,12 +19,13 @@ def create_app(config_class=Config):
 
     registrar_routes(app)
 
-    with app.app_context():
-        db.create_all()
+    if app.config.get("TESTING"):
+        with app.app_context():
+            db.create_all()
 
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0")
+    app.run(host="127.0.0.1")

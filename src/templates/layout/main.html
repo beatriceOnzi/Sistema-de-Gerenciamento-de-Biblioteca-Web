@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/icon_page.png') }}">
+    
     <title>{% block title %}Biblioteca CNEC{% endblock %}</title>
-    <link href="../../static/css/output.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../../static/assets/icon_page.png">
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </head>
 
 <body id="corpo" class="font-poppins min-h-screen flex flex-col bg-cnec-branco overflow-x-hidden">
@@ -16,11 +19,6 @@
         {% endblock %}
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.5.0/dist/js/tabulator.min.js"></script>
-   
-    <script src="{{ url_for('static', filename='main.js') }}" type="module"></script>
-
-
+    <script src="{{ url_for('static', filename='vendor/tabulator/tabulator.min.js') }}"></script>
 </body>
 </html>

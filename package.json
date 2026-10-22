@@ -4,10 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "python app.py",
+    "start": "waitress-serve --listen=127.0.0.1:5000 --call app:create_app",
     "dev": "docker compose watch",
     "watch": "npx tailwindcss -i src/static/css/input.css -o src/static/css/output.css --watch",
-    "build": "npx tailwindcss -i src/static/css/input.css -o src/static/css/index.css --minify"
+    "build": "npx tailwindcss -i src/static/css/input.css -o src/static/css/output.css --minify"
   },
   "repository": {
     "type": "git",
