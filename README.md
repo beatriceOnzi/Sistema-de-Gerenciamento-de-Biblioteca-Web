@@ -1,156 +1,128 @@
-# **Sistema Biblioteca Web**
 
-Sistema desenvolvido para auxiliar no gerenciamento de bibliotecas escolares, permitindo o cadastro e controle de alunos, livros, turmas e empréstimos. Direcionado para o gerenciamento da biblioteca da Escola CNEC São Vicente e desenvolvido pensando nos requisitos da escola, porém que pode ser adaptado a outras bibliotecas em ambiente escolar, especialmente para o ensino fundamental, tendo em vista sua organização por turmas e semanas.
+# Sistema Biblioteca Web | CNEC São Vicente
 
-## Página da Seleção da Turma
+Sistema web desenvolvido para gerenciar a biblioteca da Escola CNEC São Vicente, com organização dos empréstimos por turma e por semana. O projeto reúne cadastro de alunos e livros, controle de devoluções e histórico de empréstimos em uma interface responsiva.
 
-<img width="959" height="440" alt="Captura de tela 2026-05-07 110334" src="https://github.com/user-attachments/assets/8524be85-889e-41e3-8113-5aab18ebbb3b" />
+## Interface
 
----
+<img width="959" height="440" alt="Tela de seleção de turma" src="https://github.com/user-attachments/assets/8524be85-889e-41e3-8113-5aab18ebbb3b" />
 
-## Requisitos
+## Funcionalidades
 
-- Python 3.10 ou superior
-- Node.js 18 ou superior
-- NPM
+- Cadastro e consulta de alunos e livros.
+- Registro e edição de empréstimos.
+- Avanço de semana independente por turma.
+- Visualização dos empréstimos da semana atual e anterior.
+- Identificação de devoluções pendentes.
+- Histórico de empréstimos e devoluções.
+- Avanço de ano escolar.
+- Pesquisa com filtros e autocompletar de livros.
 
----
+## Tecnologias
 
-## Tecnologias Utilizadas
-
-- Python
-- Flask
-- Flask-SQLAlchemy
-- SQLite
-- HTML
-- CSS
-- Tailwind CSS
-- JavaScript
-- Pytest
-
----
+- **Backend:** Python, Flask, Flask-SQLAlchemy e Flask-Migrate.
+- **Banco de dados:** PostgreSQL 16.
+- **Frontend:** HTML, Jinja2, JavaScript, Tailwind CSS e PostCSS.
+- **Testes:** Pytest, pytest-flask e pytest-cov.
+- **Desenvolvimento:** Docker e Docker Compose.
+- **Produção:** Waitress.
 
 ## Estrutura do Projeto
 
-```
+```text
 bibliotecaApi/
-│
-├── models/              # Modelos do banco de dados
-├── repositories/        # Manipulação dos dados
-├── routes/              # Rotas
-├── services/            # Regras de negócio
-├── templates/           # Páginas HTML
-├── static/              # CSS, JavaScript e imagens
-├── tests/               # Testes
-│
-├── app.py               # Inicialização da aplicação
-├── config.py            # Configurações gerais
-├── requirements.txt     # Dependências Python
-├── package.json         # Dependências frontend
+├── src/
+│   ├── models/
+│   ├── repositories/
+│   ├── services/
+│   ├── routes/
+│   ├── templates/
+│   ├── static/
+│   └── tests/
+├── migrations/
+├── app.py
+├── config.py
+├── compose.yaml
+├── Dockerfile
+├── requirements.txt
+├── package.json
 └── README.md
 ```
 
----
+## Instalação e Execução
 
-## Instalação
+### Pré-requisitos
+
+- Docker e Docker Compose.
+- Node.js e npm (para compilação do CSS).
 
 Clone o repositório:
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/beatriceOnzi/Sistema_Biblioteca_Api.git
+cd Sistema_Biblioteca_Api
 ```
 
-Acesse a pasta do projeto:
+Crie um arquivo `.env` na raiz do projeto:
+
+```dotenv
+POSTGRES_USER=biblioteca
+POSTGRES_PASSWORD=sua_senha
+POSTGRES_DB=biblioteca
+DATABASE_URL=postgresql+psycopg2://biblioteca:sua_senha@db:5432/biblioteca
+SECRET_KEY=sua_chave_secreta
+```
+
+Inicie os serviços:
 
 ```bash
-cd bibliotecaApi
+docker compose up --build -d
 ```
 
-Crie um ambiente virtual:
+Acesse a aplicação em:
+
+`http://localhost:5000`
+
+Para encerrar:
 
 ```bash
-python -m venv venv
+docker compose down
 ```
 
-Ative o ambiente virtual:
+Os dados do PostgreSQL são armazenados no volume Docker `pgdata`.
 
-Windows:
+## Desenvolvimento
+
+Comandos disponíveis no `package.json`:
 
 ```bash
-venv\\Scripts\\activate
+npm install
+npm run dev       # Sincroniza alterações usando Docker Compose Watch
+npm run watch     # Compila o CSS durante o desenvolvimento
+npm run build     # Gera o CSS minificado
 ```
 
-Linux/Mac:
+### Testes
 
-```bash
-source venv/bin/activate
-```
-
-Instale as dependências:
+Instale as dependências Python e execute os testes:
 
 ```bash
 pip install -r requirements.txt
-npm install
-```
-
----
-
-## Executando o Projeto
-
-Iniciar o servidor:
-
-```bash
-npm start
-```
-
-A aplicação estará disponível em:
-
-```
-<http://localhost:5000>
-```
-
----
-
-## Compilação do Tailwind CSS
-
-Para atualizar os estilos durante o desenvolvimento:
-
-```bash
-npm run watch
-```
-
----
-
-## Testes
-
-Para executar os testes automatizados:
-
-```bash
 pytest
 ```
 
----
+Os testes utilizam SQLite em memória, enquanto a aplicação principal utiliza PostgreSQL.
 
-## Funcionalidades
+## Implantação na Escola
 
-- Cadastro de alunos
-- Cadastro de livros
-- Registro de empréstimos
-- Registro de devoluções
-- Controle de livros emprestados
-- Histórico de empréstimos
-- Organização por turmas
-- Interface web responsiva
-- Testes automatizados
+Na Escola CNEC São Vicente, a aplicação é executada localmente, sem Docker, utilizando PostgreSQL e Waitress como servidor WSGI.
 
----
+Após configurar o ambiente Python, as dependências e o arquivo `.env`, o servidor é iniciado com:
 
-## Arquitetura
+```bash
+waitress-serve --listen=127.0.0.1:5000 --call app:create_app
+```
 
-O projeto segue uma arquitetura em camadas:
+O Waitress executa a função `create_app()` definida em `app.py`, responsável pela inicialização do Flask, configuração do banco de dados e registro das rotas.
 
-- **Models:** representação das entidades do banco de dados.
-- **Routes:** recebimento das requisições da aplicação.
-- **Services:** regras de negócio e processamento dos dados.
-- **Templates:** interface visual do sistema.
-- **Database:** persistência utilizando SQLite e SQLAlchemy.
+A aplicação fica disponível em `http://127.0.0.1:5000` no computador que executa o servidor.
