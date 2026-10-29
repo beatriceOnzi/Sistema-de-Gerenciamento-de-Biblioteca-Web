@@ -4,7 +4,17 @@
     <title>{% block title %}Biblioteca CNEC{% endblock %}</title>
     <link href="../../static/css/output.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../../static/assets/icon_page.png">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb">
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+    </script>
+    
 </head>
 
 <body id="corpo" class="font-poppins min-h-screen flex flex-col bg-cnec-branco overflow-x-hidden">
