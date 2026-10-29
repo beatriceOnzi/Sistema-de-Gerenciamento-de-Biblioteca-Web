@@ -1,3 +1,5 @@
+import { alternar_data_devolucao } from './tables_data.js'
+
 const historico_data = await get_historico_data()
 
 const table_data_historico = historico_data.map(emp => ({
@@ -91,38 +93,5 @@ function debounce(fn, delay = 250) {
 async function get_historico_data() {
     const response = await fetch("./get_historico_data");
     const data = await response.json()
-    return data
-}
-
-async function alternar_data_devolucao(e, cell) {
-    const id = cell.getRow().getData().id;
-    const conteudo_data_devolucao = await atualizar_data_devolucao(id);
-
-    const row = cell.getRow()
-
-    if (row) {
-        row.update({
-            data_devolucao: conteudo_data_devolucao
-        });
-    }
-
-    row.reformat();
-}
-
-async function atualizar_data_devolucao(id){
-    const response = await fetch(`./atualizar_data_devolucao`, {
-        method: 'POST',
-
-        headers: {
-            'Content-Type': 'application/json'
-        },
-
-        body: JSON.stringify({
-            id
-        })
-    });
-
-    const data = await response.json()
-
     return data
 }

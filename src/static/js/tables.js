@@ -3,7 +3,8 @@ import {
 	get_cadastro_table_data,
     save_title,
     set_data_devolucao,
-    get_livros
+    get_livros,
+    alternar_data_devolucao
 } from './tables_data.js'
 
 
@@ -16,7 +17,7 @@ const tabledata_registro = records_table_data.map(emp => ({
     data_empre: emp.data_emprestimo,
     aluno: emp.aluno,
     livro: emp.livro,
-    data_dev_real: emp.data_devolucao
+    data_devolucao: emp.data_devolucao
 }));
 
 var tabela_registro = new Tabulator("#tabela_registro", {
@@ -27,7 +28,10 @@ var tabela_registro = new Tabulator("#tabela_registro", {
         { title: "Data de Empréstimo", field: "data_empre",     hozAlign: "center", headerWordWrap: true, headerSort: false },
         { title: "Aluno",              field: "aluno",          hozAlign: "left",   formatter: "textarea", headerSort: false },
         { title: "Livro",              field: "livro",          hozAlign: "left",   formatter: "textarea", headerSort: false },
-        { title: "Data de Devolução",  field: "data_dev_real",  hozAlign: "center", headerWordWrap: true,  headerSort: false, formatter: devolucao_pendente_style },
+        { title: "Data de Devolução",  field: "data_devolucao",  hozAlign: "center", headerWordWrap: true,  headerSort: false, 
+            formatter: devolucao_pendente_style,
+            cellClick: alternar_data_devolucao,
+        },
     ],
 });
 
@@ -86,7 +90,7 @@ async function salvar_emprestimo(cell){
 
     if (row) {
         row.update({
-            data_dev_real: data_devolucao
+            data_devolucao: data_devolucao
         });
     }
     row.reformat();

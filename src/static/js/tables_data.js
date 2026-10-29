@@ -52,3 +52,38 @@ export async function set_data_devolucao(title, aluno) {
     const data = await response.json()
     return data
 }
+
+
+export async function alternar_data_devolucao(e, cell) {
+    const id = cell.getRow().getData().id;
+    const conteudo_data_devolucao = await atualizar_data_devolucao(id);
+
+    const row = cell.getRow()
+    console.log("saasadsda", row)
+
+    if (row) {
+        row.update({
+            data_devolucao: conteudo_data_devolucao
+        });
+    }
+
+    row.reformat();
+}
+
+async function atualizar_data_devolucao(id){
+    const response = await fetch(`/historico/atualizar_data_devolucao`, {
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            id
+        })
+    });
+
+    const data = await response.json()
+
+    return data
+}
